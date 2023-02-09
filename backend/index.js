@@ -13,7 +13,7 @@ app.use(cors(corsOptions));
 app.get("/", (req, res, next) => {
   var newDate = new Date();
   var datetime = newDate.toLocaleString();
-  res.json({ datetime, message: "Hello World" });
+  return res.json({ "datetime": datetime, message: "Hello World" });
 });
 
 app.listen(port, () => {
