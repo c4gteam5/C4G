@@ -1,11 +1,11 @@
-# How start frontend
+# How to start frontend
 
 ##### using the terminal, make sure you are in the frontend directory (cd frontend)
 ##### type: npm install
 ##### type: npm start
 ##### on your browser, go to: localhost:3000/
 
-# How start backend
+# How to start backend
 
 ##### using the terminal make sure you are in the backend directory (cd backend)
 ##### type: npm install 
