@@ -1,8 +1,27 @@
 const express = require("express");
 const app = express();
 const port = 8000;
+const cors = require('cors');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+var bodyParser = require('body-parser')
 
-const cors = require('cors')
+//routes
+const healthCheckRoute = require("./routes/healthCheckRoute");
+const volunteerRoutes = require("./routes/volunteerRoutes");
+
+//global middleware
+//set HTTP Security header
+app.use(helmet());
+
+//data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+//data sanitization against XSS
+app.use(xss());
+
 
 var corsOptions = {
   origin: '*',
@@ -10,11 +29,18 @@ var corsOptions = {
 }
 app.use(cors(corsOptions));
 
-app.get("/", (req, res, next) => {
-  var newDate = new Date();
-  var datetime = newDate.toLocaleString();
-  return res.status(200).json({ datetime: datetime, message: "Hello World" });
-});
+
+dotenv.config({ path: './config.env' });
+const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+
+mongoose.connect(DB).then(() => {console.log('DB connected');});
+
+// parse application/json
+app.use(bodyParser.json())
+
+// API Routes
+app.use("/api", healthCheckRoute);
+app.use("/api/volunteers", volunteerRoutes);
 
 app.listen(port, () => {
   console.log(`C4G app listening on port ${port}`);

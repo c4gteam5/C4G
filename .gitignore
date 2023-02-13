@@ -178,3 +178,7 @@ dist
 
 # SvelteKit build / generate output
 .svelte-kit
+
+# dotenv environment variables file
+*.env
+.env.test
