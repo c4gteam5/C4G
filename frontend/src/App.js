@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 
-const baseURL = "http://localhost:8000/";
+const baseURL = "http://localhost:8000/api/healthcheck";
 
 function App() {
   const [apiCall, setApiCall] = React.useState(null);
