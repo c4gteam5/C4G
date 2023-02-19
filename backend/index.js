@@ -12,6 +12,7 @@ var bodyParser = require("body-parser");
 //routes
 const healthCheckRoute = require("./routes/healthCheckRoute");
 const volunteerRoutes = require("./routes/volunteerRoutes");
+const adminAuthRoutes = require("./routes/adminAuthRoutes");
 
 //global middleware
 //set HTTP Security header
@@ -53,6 +54,7 @@ app.use((req, res, next) => {
 // API Routes
 app.use("/api", healthCheckRoute);
 app.use("/api/volunteers", volunteerRoutes);
+app.use("/api/admin", adminAuthRoutes)
 
 
 //catch any requests to non-existent API endpoints
