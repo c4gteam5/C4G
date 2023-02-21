@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const Admin = require("../dataModels/adminModel");
 const AppError = require('./../utils/appError');
+const { promisify } = require('util');
 
 const signToken = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -81,3 +82,96 @@ exports.logout = (req, res) => {
   });
   res.status(200).json({ status: "success" });
 };
+
+
+exports.protect = async (req, res, next) => {
+
+  //1) get token and check if it exists
+  let token;
+  // eslint-disable-next-line prettier/prettier
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    
+    token = req.cookies.jwt;
+  }
+
+  if (!token) {
+    return res.status(403).json({
+      message: 'You Are Not Logged In'
+  })
+  }
+
+  if (token === 'loggedout') {
+    return res.status(403).json({
+      message: 'You Are Not Logged In'
+  })
+  }
+
+  //2) verify the token
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+  //3) if verification is successful, check if user still exists
+  const freshUser = await Admin.findById(decoded.id);
+  if (!freshUser) {
+    return res.status(403).json({
+      message: 'Admin no longer exists'
+  })  }
+
+  //4) Check if user changed password after token was issued
+  if (freshUser.changedPasswordAfter(decoded.iat)) {
+    return res.status(403).json({
+      message: 'Admin changed password. Must login again'
+  })  }
+
+  //grant access to protected route
+  req.user = freshUser;
+  next();
+};
+
+
+exports.isLoggedIn = async (req, res, next) => {
+
+  //1) get token and check if it exists
+  let token;
+  // eslint-disable-next-line prettier/prettier
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    
+    token = req.cookies.jwt;
+  }
+
+  if (!token) {
+    return res.status(403).json({
+      message: 'You Are Not Logged In'
+  })
+  }
+
+  if (token === 'loggedout') {
+    return res.status(403).json({
+      message: 'You Are Not Logged In'
+  })
+  }
+
+  //2) verify the token
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+  //3) if verification is successful, check if user still exists
+  const freshUser = await Admin.findById(decoded.id);
+  if (!freshUser) {
+    return res.status(403).json({
+      message: 'Admin no longer exists'
+  })  }
+
+  //4) Check if user changed password after token was issued
+  if (freshUser.changedPasswordAfter(decoded.iat)) {
+    return res.status(403).json({
+      message: 'Admin changed password. Must login again'
+  })  }
+
+  return res.status(200).json({
+    message: 'success'
+  });
+};
+

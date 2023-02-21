@@ -7,5 +7,6 @@ const adminAuthController = require('./../controllers/adminAuthController');
 adminAuthRouter.post('/signup', adminAuthController.signup);
 adminAuthRouter.post('/login', adminAuthController.login);
 adminAuthRouter.get('/logout', adminAuthController.logout);
+adminAuthRouter.get('/isLoggedIn', adminAuthController.isLoggedIn);
 
 module.exports = adminAuthRouter;

@@ -8,6 +8,8 @@ const xss = require("xss-clean");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+//parses cookie
+const cookieParser = require('cookie-parser');
 
 //routes
 const healthCheckRoute = require("./routes/healthCheckRoute");
@@ -17,7 +19,8 @@ const adminAuthRoutes = require("./routes/adminAuthRoutes");
 //global middleware
 //set HTTP Security header
 app.use(helmet());
-
+// parse cookies
+app.use(cookieParser());
 //data sanitization against NoSQL query injection
 app.use(mongoSanitize());
 //data sanitization against XSS
