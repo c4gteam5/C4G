@@ -13,5 +13,8 @@ volunteerRoutes.use(adminAuthController.protect);
 
 volunteerRoutes.get("/getall", volunteerController.getAllVolunteers)
 
+//delete volunteer
+volunteerRoutes.delete('/deleteone', userController.deleteVolunteer);
+
 
 module.exports = volunteerRoutes;
