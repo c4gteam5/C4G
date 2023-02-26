@@ -1,30 +1,11 @@
 // ~~~ React Libraries ~~~ //
-import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
-
-// ~~~ MUI Libraries ~~~ //
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// ~~~ Pages ~~~ //
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import './index.css';
-import Site from './Site';
-import AdminSignIn from "./pages/AdminSignIn";
-import VolunteerSignUp from "./pages/VolunteerSignUp";
 
-// ~~~ App() handles the routes for page navigation ~~~ //
-export default function App() {
-	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/">
-					<Route index element={<Site />} />
-					<Route path="admin-sign-in" element={<AdminSignIn />} />
-					<Route path="volunteer-sign-up" element={<VolunteerSignUp />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
-	);
-}
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(
+	<React.StrictMode> <App /> </React.StrictMode>
+);
