@@ -27,7 +27,7 @@ import siteInfo1 from './static/media/site-info/site-info1.md';
 import siteInfo2 from './static/media/site-info/site-info2.md';
 
 // ~~~ Capture Markdown Information to JSX ~~~ //
-export const SiteInformation = (): JSX.Element => {
+const SiteInformation = (): JSX.Element => {
 	const [siteText1, setSiteText1] = useState('')
 	const [siteText2, setSiteText2] = useState('')
 	
@@ -43,6 +43,7 @@ export const SiteInformation = (): JSX.Element => {
 		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
 			<Divider />
 			<ReactMarkdown children={siteText1} />
+			<Divider />
 			<ReactMarkdown children={siteText2} />
 		</Grid>
 	)
