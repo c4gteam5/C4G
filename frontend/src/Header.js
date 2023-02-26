@@ -18,7 +18,6 @@ function Header(props) {
     <React.Fragment>
 		<Toolbar sx={{ borderBottom: 1, borderColor: 'divider'}}>
 			<Button size="small">Subscribe</Button>
-			
 			<Typography component="h2" variant="h5" color="inherit" align="center" noWrap sx={{ flex: 1 }}>
 				{title}
 			</Typography>
@@ -28,14 +27,10 @@ function Header(props) {
 			<Button component={RouterLink} to="/volunteer-sign-up" variant="outlined" size="small">
 				Volunteer Sign Up
 			</Button>
-			<Button component={RouterLink} to="/volunteer-sign-in" variant="outlined" size="small">
-				Volunteer Sign In
-			</Button>
 			<Button component={RouterLink} to="/admin-sign-in" variant="outlined" size="small">
 				Admin Sign In
 			</Button>
 		</Toolbar>
-
 		<Toolbar component="nav" variant="dense" sx={{ justifyContent: 'space-between', overflowX: 'auto' }}>
 			{sections.map((section) => (
 				<Link color="inherit" noWrap key={section.title} variant="body2" href={section.url} sx={{ p: 1, flexShrink: 0 }}>

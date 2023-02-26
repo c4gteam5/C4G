@@ -1,10 +1,15 @@
 // ~~~ React Libraries ~~~ //
 import * as React from 'react';
+import { useState, useEffect } from 'react'
+
+// ~~~ Markdown Parser Libraries ~~~ //
+import ReactMarkdown from 'markdown-to-jsx';
 
 // ~~~ MUI Libraries ~~~ //
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -14,12 +19,34 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
-import Main from './Main';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
-import post1 from './static/media/blogs/blog-post1.md';
-import post2 from './static/media/blogs/blog-post2.md';
-import post3 from './static/media/blogs/blog-post3.md';
+
+// ~~~ Static Assets ~~~ //
+import siteInfo1 from './static/media/site-info/site-info1.md';
+import siteInfo2 from './static/media/site-info/site-info2.md';
+
+// ~~~ Capture Markdown Information to JSX ~~~ //
+export const SiteInformation = (): JSX.Element => {
+	const [siteText1, setSiteText1] = useState('')
+	const [siteText2, setSiteText2] = useState('')
+	
+	useEffect(() => {
+		fetch(siteInfo1).then(res => res.text()).then(text => setSiteText1(text))
+	})
+	
+	useEffect(() => {
+		fetch(siteInfo2).then(res => res.text()).then(text => setSiteText2(text))
+	})
+
+	return (
+		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
+			<Divider />
+			<ReactMarkdown children={siteText1} />
+			<ReactMarkdown children={siteText2} />
+		</Grid>
+	)
+}
 
 const sections = [
 	{title: 'Technology', url: '#'},
@@ -56,18 +83,16 @@ const featuredPosts = [
 	},
 ];
 
-const posts = [post1] //, post2, post3];
-
 const sidebar = {
 	title: 'About',
 	description: 'This could be used for web articles, other links, etc.',
 	archives: [
-		{ title: 'Some News article for Feb. 2023', url: '#' },
+		{title: 'Some News article for Feb. 2023', url: '#'},
 	],
 	social: [
-		{ name: 'GitHub', icon: GitHubIcon },
-		{ name: 'Twitter', icon: TwitterIcon },
-		{ name: 'Facebook', icon: FacebookIcon },
+		{name: 'GitHub', icon: GitHubIcon},
+		{name: 'Twitter', icon: TwitterIcon},
+		{name: 'Facebook', icon: FacebookIcon},
 	],
 };
 
@@ -87,7 +112,7 @@ export default function Blog() {
 						))}
 					</Grid>
 					<Grid container spacing={5} sx={{ mt: 3 }}>
-						<Main title="From the firehose" posts={posts} />
+						<SiteInformation />
 						<Sidebar
 							title={sidebar.title}
 							description={sidebar.description}
