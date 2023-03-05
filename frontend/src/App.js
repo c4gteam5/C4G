@@ -30,9 +30,9 @@ function App() {
 			<p>No data to return. API server is off</p>
 		</div>
 	)
-
+	
 	// ~~~ Handles the routes for page navigation ~~~ //
-	return (
+	else return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/">
