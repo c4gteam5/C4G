@@ -11,7 +11,7 @@ import Site from './Site';
 import AdminSignIn from "./pages/AdminSignIn";
 import VolunteerSignUp from "./pages/VolunteerSignUp";
 
-const baseURL = "http://localhost:8000/api/healthcheck";
+const baseURL = "https://c4g-backend-2.onrender.com/";
 
 function App() {
 	
