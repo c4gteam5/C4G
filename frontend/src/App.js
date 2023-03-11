@@ -10,6 +10,7 @@ import './index.css';
 import Site from './Site';
 import AdminSignIn from "./pages/AdminSignIn";
 import VolunteerSignUp from "./pages/VolunteerSignUp";
+import ManagementHome from "./pages/ManagementHome";
 
 //const baseURL = "http://localhost:8000/api/healthcheck";
 const baseURL = "/api/healthcheck";
@@ -39,6 +40,7 @@ function App() {
 					<Route index element={<Site />} />
 					<Route path="admin-sign-in" element={<AdminSignIn />} />
 					<Route path="volunteer-sign-up" element={<VolunteerSignUp />} />
+					<Route path="management-home" element={<ManagementHome />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
