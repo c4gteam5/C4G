@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
 // ~~~ Pages ~~~ //
-import Footer from '../components/Footer';
+import Footer from '../components/utils/Footer';
 
 const theme = createTheme();
 

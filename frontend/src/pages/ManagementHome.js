@@ -2,8 +2,8 @@ import {createTheme, ThemeProvider} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import * as React from "react";
 import Container from "@mui/material/Container";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/utils/Header";
+import Footer from "../components/utils/Footer";
 
 const ManagementHome = () => {
     const theme = createTheme();
