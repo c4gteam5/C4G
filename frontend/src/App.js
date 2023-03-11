@@ -25,14 +25,8 @@ function App() {
 		}, 
 	[]);
 
-	if (!apiCall) return (
-		<div>
-			<p>No data to return. API server is off</p>
-		</div>
-	)
-	
 	// ~~~ Handles the routes for page navigation ~~~ //
-	else return (
+	if (apiCall) return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/">
