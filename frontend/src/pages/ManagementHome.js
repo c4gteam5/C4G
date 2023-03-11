@@ -1,8 +1,23 @@
+import {createTheme, ThemeProvider} from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import * as React from "react";
+import Container from "@mui/material/Container";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 const ManagementHome = () => {
+    const theme = createTheme();
+
     return (
-        <div>
-            Management Home
-        </div>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Container maxWidth="lg">
+
+
+
+            </Container>
+            <Footer title="Cyient Foundation Management Portal - P5"/>
+        </ThemeProvider>
     );
 };
 

@@ -23,8 +23,8 @@ import Sidebar from './Sidebar';
 import Footer from './Footer';
 
 // ~~~ Static Assets ~~~ //
-import siteInfo1 from './static/media/site-info/site-info1.md';
-import siteInfo2 from './static/media/site-info/site-info2.md';
+import siteInfo1 from '../static/media/site-info/site-info1.md';
+import siteInfo2 from '../static/media/site-info/site-info2.md';
 
 // ~~~ Capture Markdown Information to JSX ~~~ //
 const SiteInformation = (): JSX.Element => {

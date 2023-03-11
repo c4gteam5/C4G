@@ -7,7 +7,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 // ~~~ Pages ~~~ //
 import './index.css';
-import Site from './Site';
+import Site from './components/Site';
 import AdminSignIn from "./pages/AdminSignIn";
 import VolunteerSignUp from "./pages/VolunteerSignUp";
 import ManagementHome from "./pages/ManagementHome";

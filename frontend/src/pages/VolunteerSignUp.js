@@ -15,7 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // ~~~ Pages ~~~ //
-import Footer from './../Footer';
+import Footer from '../components/Footer';
 
 const theme = createTheme();
 
