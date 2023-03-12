@@ -16,15 +16,15 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 // ~~~ Pages ~~~ //
-import Header from './Header';
+import Header from './utils/Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Sidebar from './Sidebar';
-import Footer from './Footer';
+import Footer from './utils/Footer';
 
 // ~~~ Static Assets ~~~ //
-import siteInfo1 from './static/media/site-info/site-info1.md';
-import siteInfo2 from './static/media/site-info/site-info2.md';
+import siteInfo1 from '../static/media/site-info/site-info1.md';
+import siteInfo2 from '../static/media/site-info/site-info2.md';
 
 // ~~~ Capture Markdown Information to JSX ~~~ //
 const SiteInformation = (): JSX.Element => {

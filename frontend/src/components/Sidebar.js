@@ -38,7 +38,7 @@ function Sidebar(props) {
 				<Link
 					display="block"
 					variant="body1"
-					href="#"
+					href="frontend/src#"
 					key={network.name}
 					sx={{ mb: 0.5 }}
 				>

@@ -7,12 +7,13 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 // ~~~ Pages ~~~ //
 import './index.css';
-import Site from './Site';
+import Site from './components/Site';
 import AdminSignIn from "./pages/AdminSignIn";
 import VolunteerSignUp from "./pages/VolunteerSignUp";
+import ManagementHome from "./pages/ManagementHome";
 
 //const baseURL = "http://localhost:8000/api/healthcheck";
-const baseURL = "https://c4g-backend-2.onrender.com/api/healthcheck";
+const baseURL = "/api/healthcheck";
 
 function App() {
 	
@@ -33,6 +34,7 @@ function App() {
 					<Route index element={<Site />} />
 					<Route path="admin-sign-in" element={<AdminSignIn />} />
 					<Route path="volunteer-sign-up" element={<VolunteerSignUp />} />
+					<Route path="management-home" element={<ManagementHome />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
