@@ -13,7 +13,7 @@ import VolunteerSignUp from "./pages/VolunteerSignUp";
 import ManagementHome from "./pages/ManagementHome";
 
 //const baseURL = "http://localhost:8000/api/healthcheck";
-const baseURL = "/api/healthcheck";
+const baseURL = "https://c4g-backend-2.onrender.com/api/healthcheck";
 
 function App() {
 	
