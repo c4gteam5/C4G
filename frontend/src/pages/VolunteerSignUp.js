@@ -13,20 +13,37 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useForm, Controller } from "react-hook-form";
 
 // ~~~ Pages ~~~ //
 import Footer from '../components/utils/Footer';
 
 const theme = createTheme();
 
+
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const postVolunteer = async ({ firstName, lastName,email,phoneNumber,profession,interest}) => {
+    const res = await fetch("https://c4g-backend-2.onrender.com/api/volunteers/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ firstName, lastName,email,phoneNumber,profession,interest }),
     });
+    if (res.status === 201) {
+      // redirect
+      alert("form submitted successfully")
+    } else {
+      // display an error
+      alert("something went wrong")
+    }
   };
 
   return (
@@ -47,7 +64,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={handleSubmit(postVolunteer)} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -58,7 +75,13 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  error={!!errors?.firstName}
+                  helperText={errors?.firstName ? errors.firstName.message : null}
+                  {...register('firstName', { required: "First name is required" })}
+                  
                 />
+
+
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -68,6 +91,9 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  error={!!errors?.lastName}
+                  helperText={errors?.lastName ? errors.lastName.message : null}
+                  {...register('lastName', { required: "Last name is required" })}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -78,23 +104,58 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  {...register("email", {
+                    required: "Required field",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  error={!!errors?.email}
+                  helperText={errors?.email ? errors.email.message : null}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  name="phoneNumber"
+                  label="Phone Number"
+                  type="tel"
+                  id="phoneNumber"
+                  autoComplete="phoneNumber"
+                  helperText={errors?.phoneNumber ? errors.phoneNumber.message : null}
+                  {...register('phoneNumber', { required: "Phone Number is required" })}
+                  error={!!errors?.phoneNumber}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+             <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="profession"
+                  label="Profession"
+                  type="text"
+                  id="profession"
+                  autoComplete="profession"
+                  helperText={errors?.profession ? errors.profession.message : null}
+                  {...register('profession', { required: "Profession is required" })}
+                  error={!!errors?.profession}
+                  
+                />
+              </Grid>
+               <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="interest"
+                  label="Interest"
+                  type="text"
+                  id="interest"
+                  autoComplete="interest"
+                  helperText={errors?.interest ? errors.interest.message : null}
+                  {...register('interest', { required: "Interest is required" })}
+                  error={!!errors?.interest}
                 />
               </Grid>
             </Grid>
@@ -107,11 +168,7 @@ export default function SignUp() {
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
+              
             </Grid>
           </Box>
         </Box>

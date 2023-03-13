@@ -15,6 +15,7 @@ const cookieParser = require('cookie-parser');
 const healthCheckRoute = require("./routes/healthCheckRoute");
 const volunteerRoutes = require("./routes/volunteerRoutes");
 const adminAuthRoutes = require("./routes/adminAuthRoutes");
+const blogPostsRoutes = require("./routes/blogPostsRoutes");
 
 //global middleware
 //set HTTP Security header
@@ -58,6 +59,7 @@ app.use((req, res, next) => {
 app.use("/api", healthCheckRoute);
 app.use("/api/volunteers", volunteerRoutes);
 app.use("/api/admin", adminAuthRoutes)
+app.use('/api/blog', blogPostsRoutes)
 
 
 //catch any requests to non-existent API endpoints
