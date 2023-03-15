@@ -17,13 +17,12 @@ function Header(props) {
   return (
     <React.Fragment>
 		<Toolbar sx={{ borderBottom: 1, borderColor: 'divider'}}>
-			<Button size="small">Subscribe</Button>
+			<Button component={RouterLink} to="/volunteer-sign-up" size="small">Subscribe</Button>
+			<Button component={RouterLink} to="/read-blog-post" size="small">Read Blog Post</Button>
 			<Typography component="h2" variant="h5" color="inherit" align="center" noWrap sx={{ flex: 1 }}>
 				{title}
 			</Typography>
-			<IconButton>
-				<SearchIcon />
-			</IconButton>
+			{/*search Icon Here*/}
 			<Button component={RouterLink} to="/volunteer-sign-up" variant="outlined" size="small">
 				Volunteer Sign Up
 			</Button>
@@ -52,3 +51,10 @@ Header.propTypes = {
 };
 
 export default Header;
+
+
+{/* Search Icon may be added later
+			<IconButton>
+				<SearchIcon />
+			</IconButton>
+*/}

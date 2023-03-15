@@ -1,3 +1,6 @@
+// ~~~ API Libraries ~~~ // 
+import axios from "axios";
+
 // ~~~ React Libraries ~~~ //
 import * as React from 'react';
 import { useState, useEffect } from 'react'
@@ -16,22 +19,31 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 // ~~~ Pages ~~~ //
-import Header from './utils/Header';
-import MainFeaturedPost from './MainFeaturedPost';
-import FeaturedPost from './FeaturedPost';
-import Sidebar from './Sidebar';
-import Footer from './utils/Footer';
+import Header from '../components/utils/Header';
+import MainFeaturedPost from '../components/MainFeaturedPost';
+// import FeaturedPost from './FeaturedPost';
+import Sidebar from '../components/Sidebar';
+import Footer from '../components/utils/Footer';
 
 // ~~~ Static Assets ~~~ //
 import siteInfo1 from '../static/media/site-info/site-info1.md';
 import siteInfo2 from '../static/media/site-info/site-info2.md';
+import siteInfo3 from '../static/media/site-info/site-info3.md';
 
 import logo from '../static/media/pictures/CyientP5Logo.png';
+
+const getPostsURL = "http://localhost:8000/api/blog/getall";
+// const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
+
+// function grabblogPosts() {
+// 	const res = async()
+// }
 
 // ~~~ Capture Markdown Information to JSX ~~~ //
 const SiteInformation = (): JSX.Element => {
 	const [siteText1, setSiteText1] = useState('')
 	const [siteText2, setSiteText2] = useState('')
+	const [siteText3, setSiteText3] = useState('')
 	
 	useEffect(() => {
 		fetch(siteInfo1).then(res => res.text()).then(text => setSiteText1(text))
@@ -41,44 +53,26 @@ const SiteInformation = (): JSX.Element => {
 		fetch(siteInfo2).then(res => res.text()).then(text => setSiteText2(text))
 	})
 
+	useEffect(() => {
+		fetch('http://localhost:8000/api/blog/getall').then(res => res.text()).then(text => setSiteText3(text))
+	})
+
+
+	const [apiCall, setApiCall] = React.useState(null);
+	React.useEffect(() => {
+		axios.get(getPostsURL).then((response) => {
+				console.log(response.data)
+			});
+		}, 
+	[]);
+
 	return (
 		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
 			<Divider />
-			<ReactMarkdown children={siteText1} />
-			<Divider />
-			<ReactMarkdown children={siteText2} />
+			<ReactMarkdown children={siteText3} />
 		</Grid>
 	)
 }
-
-const sections = [
-	{title: 'Parent Organization', url: 'https://www.cyient.com/'}
-];
-
-const mainFeaturedPost = {
-	title: 'Volunteer Sign Up!',
-	description: "This is a test holder for a featured post for volunteers to sign up for",
-	image: logo,
-	imageText: 'main image description',
-	linkText: 'Continue reading…',
-};
-
-const featuredPosts = [
-	{
-		title: 'Featured post',
-		date: 'Feb 20',
-		description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
-		image: 'https://source.unsplash.com/random',
-		imageLabel: 'Image Text',
-	},
-	{
-		title: 'Post title',
-		date: 'Feb 21',
-		description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
-		image: 'https://source.unsplash.com/random',
-		imageLabel: 'Image Text',
-	},
-];
 
 const sidebar = {
 	title: 'About',
@@ -93,21 +87,29 @@ const sidebar = {
 	],
 };
 
+const sections = [
+	{title: 'Parent Organization', url: 'https://www.cyient.com/'}
+];
+
+const mainFeaturedPost = {
+	title: 'Volunteer Sign Up!',
+	description: "This is a test holder for a featured post for volunteers to sign up for",
+	image: logo,
+	imageText: 'main image description',
+	linkText: 'Continue reading…',
+};
+
 const theme = createTheme();
 
-export default function Blog() {
+export default function ReadBlog() {
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<Container maxWidth="lg">
 				<Header title="Cyient Foundation - P5" sections={sections} />
 				<main>
+					{/*Featured posts and other posts here*/}
 					<MainFeaturedPost post={mainFeaturedPost} />
-					<Grid container spacing={4}>
-						{featuredPosts.map((post) => (
-						  <FeaturedPost key={post.title} post={post} />
-						))}
-					</Grid>
 					<Grid container spacing={5} sx={{ mt: 3 }}>
 						<SiteInformation />
 						<Sidebar

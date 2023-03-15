@@ -16,7 +16,7 @@ const ManagementHome = () => {
 
 
             </Container>
-            <Footer title="Cyient Foundation Management Portal - P5"/>
+            <Footer title="Cyient Foundation Management Portal - P5" description="Cyient (Estd: 1991, NSE: CYIENT) is a global digital engineering and technology company."/>
         </ThemeProvider>
     );
 };
