@@ -26,8 +26,7 @@ export const getPosts = async (dispatch) => {
 
 export const addPost = async (dispatch, post) => {
     try {
-        const res = await axios.post('/create', post);
-
+        const res = await axios.post("/api/blog/create", post);
         dispatch({
             type: ADD_POST,
             payload: res.data
@@ -42,7 +41,7 @@ export const addPost = async (dispatch, post) => {
 
 const PostState = (props) => {
     const initialState = {
-        posts: null,
+        posts: [],
         error: null
     };
 

@@ -1,6 +1,7 @@
 import {
     GET_POSTS,
-    ADD_POST
+    ADD_POST,
+    POST_ERROR
 } from "../types";
 
 const postReducer = (state, action) => {
@@ -14,6 +15,11 @@ const postReducer = (state, action) => {
             return {
                 ...state,
                 posts: [action.payload, ...state.posts]
+            };
+        case POST_ERROR:
+            return {
+                ...state,
+                error: action.payload
             };
         default:
             throw new Error(`Unsupported type of: ${action.type}`);
