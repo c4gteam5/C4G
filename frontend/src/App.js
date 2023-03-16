@@ -11,6 +11,7 @@ import Site from './components/Site';
 import AdminSignIn from "./pages/AdminSignIn";
 import VolunteerSignUp from "./pages/VolunteerSignUp";
 import ManagementHome from "./pages/ManagementHome";
+import PostState from "./context/post/postState";
 
 //const baseURL = "http://localhost:8000/api/healthcheck";
 const baseURL = "https://c4g-backend-2.onrender.com/api/healthcheck";
@@ -28,16 +29,18 @@ function App() {
 
 	// ~~~ Handles the routes for page navigation ~~~ //
 	if (apiCall) return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/">
-					<Route index element={<Site />} />
-					<Route path="admin-sign-in" element={<AdminSignIn />} />
-					<Route path="volunteer-sign-up" element={<VolunteerSignUp />} />
-					<Route path="management-home" element={<ManagementHome />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
+		<PostState>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/">
+						<Route index element={<Site />} />
+						<Route path="admin-sign-in" element={<AdminSignIn />} />
+						<Route path="volunteer-sign-up" element={<VolunteerSignUp />} />
+						<Route path="management-home" element={<ManagementHome />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</PostState>
 	);
 }
 
