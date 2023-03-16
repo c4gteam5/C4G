@@ -11,7 +11,8 @@ import Site from './components/Site';
 import AdminSignIn from "./pages/AdminSignIn";
 import VolunteerSignUp from "./pages/VolunteerSignUp";
 import ManagementHome from "./pages/ManagementHome";
-import ReadBlog from "./pages/ReadBlog"
+import ReadBlog from "./pages/ReadBlog";
+import Archive from "./pages/Archive";
 
 const baseURL = "http://localhost:8000/api/healthcheck";
 // const baseURL = "https://c4g-backend-2.onrender.com/api/healthcheck";
@@ -37,6 +38,7 @@ function App() {
 					<Route path="volunteer-sign-up" element={<VolunteerSignUp />} />
 					<Route path="management-home" element={<ManagementHome />} />
 					<Route path="read-blog-post" element={<ReadBlog />} />
+					<Route path="archive" element={<Archive />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

@@ -75,11 +75,11 @@ function BuildFrontSiteInformation() {
 		siteText1 = "# " + blogPosts[length - 4].title + "\n\n" + blogPosts[length - 4].content
 		siteText2 = "# " + blogPosts[length - 5].title + "\n\n" + blogPosts[length - 5].content
 		if (siteText1.length > 269) {
-			siteText1 = siteText1.susbtring(0, 269)
+			siteText1 = siteText1.substring(0, 269)
 			siteText1 = siteText1 + "..."
 		}
 		if (siteText2.length > 269) {
-			siteText2 = siteText2.susbtring(0, 269)
+			siteText2 = siteText2.substring(0, 269)
 			siteText2 = siteText2 + "..."
 		}
 
@@ -96,7 +96,7 @@ function BuildFrontSiteInformation() {
 
 		siteText1 = "# " + blogPosts[length - 4].title + "\n\n" + blogPosts[length - 4].content
 		if (siteText1.length > 269) {
-			siteText1 = siteText1.susbtring(0, 269)
+			siteText1 = siteText1.substring(0, 269)
 			siteText1 = siteText1 + "..."
 		}
 

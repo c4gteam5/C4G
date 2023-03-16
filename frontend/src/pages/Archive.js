@@ -20,10 +20,9 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 // ~~~ Pages ~~~ //
 import Header from '../components/utils/Header';
-// import MainFeaturedPost from '../components/MainFeaturedPost';
-// import FeaturedPost from './FeaturedPost';
 import BuildMainFeaturedPost from '../actions/BuildMainFeaturedPost';
 import BuildFeaturedPosts from '../actions/BuildFeaturedPosts';
+import BuildArchiveSiteInformation from '../actions/BuildArchiveSiteInformation';
 import Sidebar from '../components/Sidebar';
 import Footer from '../components/utils/Footer';
 
@@ -37,41 +36,7 @@ import logo from '../static/media/pictures/CyientP5Logo.png';
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';
 const getPostsURL = GetServerUrl + "blog/getall";
-// const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
 
-// function grabblogPosts() {
-// 	const res = async()
-// }
-
-// ~~~ Capture Markdown Information to JSX ~~~ //
-const SiteInformation = (): JSX.Element => {
-	const [siteText1, setSiteText1] = useState('')
-	const [siteText2, setSiteText2] = useState('')
-	const [siteText3, setSiteText3] = useState('')
-	
-	useEffect(() => {
-		fetch(siteInfo1).then(res => res.text()).then(text => setSiteText1(text))
-	})
-	
-	useEffect(() => {
-		fetch(siteInfo2).then(res => res.text()).then(text => setSiteText2(text))
-	})
-
-	useEffect(() => {
-		fetch(getPostsURL).then(response => {
-			console.log(response.data.posts[0]._id)
-			console.log(response.data.posts[0].title)
-			console.log(response.data.posts[0].content)
-		})
-	})
-
-	return (
-		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
-			<Divider />
-			<ReactMarkdown children={siteText3} />
-		</Grid>
-	)
-}
 
 const sidebar = {
 	title: 'About',
@@ -92,58 +57,7 @@ const sections = [
 
 const theme = createTheme();
 
-export default function ReadBlog() {
-	const queryParameters = new URLSearchParams(window.location.search)
-	const url_id = queryParameters.get("id")
-
-	var [blogPosts, blogPostsSwitch] = useState([])
-	let blogTitle = ''
-	let blogBody = ''
-	let blogImage = ''
-
-	const fetchBlogs = async () => {
-			fetch(getPostsURL)
-				.then((res) => res.json())
-				.then((data) => {
-
-				blogPostsSwitch(data.posts)
-			})
-		};
-
-	useEffect(() => {
-		fetchBlogs();
-	}, [])
-
-	// console.log("break")
-	// console.log(blogPosts)
-
-	for (let i = 0; i < blogPosts.length; i++) {
-        if (blogPosts[i]._id == url_id) {
-            blogTitle = blogPosts[i].title
-			blogBody = blogPosts[i].content
-			blogImage = blogPosts[i].linkToPicture	// COMMENT IN FOR 
-			// blogImage = logo 	// comment in for stock image
-			
-		}
-	}
-
-    if (blogImage === '' || blogImage === undefined) {
-		blogImage = logo
-		// console.log('image variable is undefined or null');
-	}
-
-    // console.log(blogTitle)
-    // console.log(blogBody)
-    // console.log(blogImage)
-    // console.log(url_id)
-
-    let markdown = ""
-    if (url_id === undefined || url_id === '' || url_id === null) {
-    	markdown = "# Big ol title\n\nThis is where your post could be read"
-    }
-    else {
-    	markdown = "# " + blogTitle + "\n\n" + blogBody
-    }
+export default function Archive() {
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -155,14 +69,7 @@ export default function ReadBlog() {
 					<BuildMainFeaturedPost />
 					<BuildFeaturedPosts />
 					<Grid container spacing={5} sx={{ mt: 3 }}>
-						<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
-							<Divider />
-							<img
-								src={blogImage}
-								style={{ maxWidth: "100%" }}
-							/>
-							<ReactMarkdown children={markdown} />
-						</Grid>
+						<BuildArchiveSiteInformation />
 						<Sidebar
 							title={sidebar.title}
 							description={sidebar.description}
