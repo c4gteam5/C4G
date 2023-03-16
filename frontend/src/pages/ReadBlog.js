@@ -53,18 +53,30 @@ const SiteInformation = (): JSX.Element => {
 		fetch(siteInfo2).then(res => res.text()).then(text => setSiteText2(text))
 	})
 
+	// useEffect(() => {
+	// 	fetch('http://localhost:8000/api/blog/getall').then(res => res.text()).then(text => setSiteText3(text))
+	// })
+
+
+	// const [apiCall, setApiCall] = React.useState(null);
+	// React.useEffect(() => {
+	// 	axios.get(getPostsURL).then((response) => {
+
+	// 			console.log(response.data.posts[0]._id)
+	// 			console.log(response.data.posts[0].title)
+	// 			console.log(response.data.posts[0].content)
+	// 			// console.log(response.data)
+	// 		});
+	// 	}, 
+	// []);
+
 	useEffect(() => {
-		fetch('http://localhost:8000/api/blog/getall').then(res => res.text()).then(text => setSiteText3(text))
+		fetch(getPostsURL).then(response => {
+			console.log(response.data.posts[0]._id)
+			console.log(response.data.posts[0].title)
+			console.log(response.data.posts[0].content)
+		})
 	})
-
-
-	const [apiCall, setApiCall] = React.useState(null);
-	React.useEffect(() => {
-		axios.get(getPostsURL).then((response) => {
-				console.log(response.data)
-			});
-		}, 
-	[]);
 
 	return (
 		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>

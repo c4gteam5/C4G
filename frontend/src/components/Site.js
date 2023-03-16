@@ -21,12 +21,19 @@ import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Sidebar from './Sidebar';
 import Footer from './utils/Footer';
+import BuildMainFeaturedPost from '../actions/BuildMainFeaturedPost';
+import BuildFeaturedPosts from '../actions/BuildFeaturedPosts';
 
 // ~~~ Static Assets ~~~ //
 import siteInfo1 from '../static/media/site-info/site-info1.md';
 import siteInfo2 from '../static/media/site-info/site-info2.md';
 
 import logo from '../static/media/pictures/CyientP5Logo.png';
+
+// ~~~ Blog Posts Assets ~~~ //
+const getPostsURL = "http://localhost:8000/api/blog/getall";
+// const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
+// let dataGlobal;
 
 // ~~~ Capture Markdown Information to JSX ~~~ //
 const SiteInformation = (): JSX.Element => {
@@ -55,7 +62,7 @@ const sections = [
 	{title: 'Parent Organization', url: 'https://www.cyient.com/'}
 ];
 
-const mainFeaturedPost = {
+var mainFeaturedPost = {
 	title: 'Volunteer Sign Up!',
 	description: "This is a test holder for a featured post for volunteers to sign up for",
 	image: logo,
@@ -95,6 +102,22 @@ const sidebar = {
 
 const theme = createTheme();
 
+function BuildFeatured(data) {
+	
+	var length = data.length;
+
+	if (length > 0) {
+		console.log(data)
+		mainFeaturedPost = {
+			title: data[0].title,
+			description: data[0].content,
+			image: logo,
+			imageText: 'logo image',
+			linkText: 'Continue reading…',
+		};
+	}
+}
+
 export default function Blog() {
 	return (
 		<ThemeProvider theme={theme}>
@@ -102,12 +125,8 @@ export default function Blog() {
 			<Container maxWidth="lg">
 				<Header title="Cyient Foundation - P5" sections={sections} />
 				<main>
-					<MainFeaturedPost post={mainFeaturedPost} />
-					<Grid container spacing={4}>
-						{featuredPosts.map((post) => (
-						  <FeaturedPost key={post.title} post={post} />
-						))}
-					</Grid>
+					<BuildMainFeaturedPost />
+					<BuildFeaturedPosts />
 					<Grid container spacing={5} sx={{ mt: 3 }}>
 						<SiteInformation />
 						<Sidebar
