@@ -17,6 +17,10 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+
+import {Link as RouterLink } from "react-router-dom";
 
 // ~~~ Pages ~~~ //
 import FeaturedPost from '../components/FeaturedPost';
@@ -30,27 +34,12 @@ import GetServerUrl from '../components/utils/GetServerUrl';
 const getPostsURL = GetServerUrl + "blog/getall";
 
 
-function BuildFeaturedPosts () {
+function BuildFrontSiteInformation() {
+	var siteText1 = "# Big ol title\n\nThis is where your post could be read"
+	var siteText2 = "# Big ol title\n\nThis is where your post could be read"
+	let blogImage1 = ''
+	let blogImage2 = ''
 	const [blogPosts, blogPostsSwitch] = useState([])
-
-	var featuredPosts = [
-		{
-			title: 'Featured post',
-			date: 'Feb 20',
-			description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
-			image: 'https://source.unsplash.com/random',
-			imageLabel: 'Image Text',
-			id: '0',
-		},
-		{
-			title: 'Post title',
-			date: 'Feb 21',
-			description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
-			image: 'https://source.unsplash.com/random',
-			imageLabel: 'Image Text',
-			id: '0',
-		},
-	];
 
 	const fetchBlogs = async () => {
 		fetch(getPostsURL)
@@ -65,17 +54,15 @@ function BuildFeaturedPosts () {
 		fetchBlogs();
 	}, [])
 
-	
+
 	var length = blogPosts.length;
-	let blogImage1 = ''
-	let blogImage2 = ''
+	let targetURL1 = "/read-blog-post" + "?id="
+	let targetURL2 = "/read-blog-post" + "?id="
 
-	if (length > 2) {
-		// console.log(blogPosts.length)
-		// console.log(blogPosts)
+	if (length > 4) {
 
-		blogImage1 = blogPosts[length - 2].linkToPicture
-		blogImage2 = blogPosts[length - 3].linkToPicture
+		blogImage1 = blogPosts[length - 4].linkToPicture
+		blogImage2 = blogPosts[length - 5].linkToPicture
 		if (blogImage1 === '' || blogImage1 === undefined) {
 			blogImage1 = image1
 			// console.log('image variable is undefined or null');
@@ -85,50 +72,51 @@ function BuildFeaturedPosts () {
 			// console.log('image variable is undefined or null');
 		}
 
-		featuredPosts = [
-			{
-				title: blogPosts[length - 2].title,
-				date: 'Feb 20',
-				description: blogPosts[length - 2].content,
-				image: blogImage1,
-				imageLabel: blogImage1,
-				id: blogPosts[length - 2]._id,
-			},
-			{
-				title: blogPosts[length - 3].title,
-				date: 'Feb 21',
-				description: blogPosts[length - 3].content,
-				image: blogImage2,
-				imageLabel: blogImage2,
-				id: blogPosts[length - 3]._id,
-			},
-		];
-	}
-	else if (length > 1 && length < 2) {
+		siteText1 = "# " + blogPosts[length - 4].title + "\n\n" + blogPosts[length - 4].content
+		siteText2 = "# " + blogPosts[length - 5].title + "\n\n" + blogPosts[length - 5].content
+		if (siteText1.length > 269) {
+			siteText1 = siteText1.susbtring(0, 269)
+			siteText1 = siteText1 + "..."
+		}
+		if (siteText2.length > 269) {
+			siteText2 = siteText2.susbtring(0, 269)
+			siteText2 = siteText2 + "..."
+		}
 
-		blogImage1 = blogPosts[length - 2].linkToPicture
+		targetURL1 = targetURL1 + blogPosts[length - 4]._id
+		targetURL2 = targetURL2 + blogPosts[length - 5]._id
+	}
+	else if (length > 3 && length < 5) {
+
+		blogImage1 = blogPosts[length - 4].linkToPicture
 		if (blogImage1 === '' || blogImage1 === undefined) {
 			blogImage1 = image1
 			// console.log('image variable is undefined or null');
 		}
 
-		featuredPosts = {
-			title: blogPosts[length - 2].title,
-			date: 'Feb 20',
-			description: blogPosts[length - 2].content,
-			image: blogImage1,
-			imageLabel: blogImage1,
-			id: blogPosts[length - 2]._id,
-		};
+		siteText1 = "# " + blogPosts[length - 4].title + "\n\n" + blogPosts[length - 4].content
+		if (siteText1.length > 269) {
+			siteText1 = siteText1.susbtring(0, 269)
+			siteText1 = siteText1 + "..."
+		}
+
+		targetURL1 = targetURL1 + blogPosts[length - 4]._id
 	}
 
 	return (
-		<Grid container spacing={4}>
-			{featuredPosts.map((post) => (
-			  <FeaturedPost key={post.title} post={post} />
-			))}
+		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
+			<Divider />
+			<ReactMarkdown children={siteText1} />
+			<Link variant="subtitle1" href={targetURL1}>
+				Continue Reading...
+			</Link>
+			<Divider />
+			<ReactMarkdown children={siteText2} />
+			<Link variant="subtitle1" href={targetURL2}>
+				Continue Reading...
+			</Link>
 		</Grid>
 	)
 }
 
-export default BuildFeaturedPosts;
+export default BuildFrontSiteInformation;

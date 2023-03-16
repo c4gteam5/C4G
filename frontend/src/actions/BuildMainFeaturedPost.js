@@ -21,11 +21,7 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {Link as RouterLink } from "react-router-dom";
 
 // ~~~ Pages ~~~ //
-// import Header from './utils/Header';
 import MainFeaturedPost from '../components/MainFeaturedPost';
-// import FeaturedPost from './FeaturedPost';
-// import Sidebar from './Sidebar';
-// import Footer from './utils/Footer';
 
 import logo from '../static/media/pictures/CyientP5Logo.png';
 
@@ -42,7 +38,7 @@ function BuildMainFeaturedPost () {
 	var mainFeaturedPost = {
 		title: 'Volunteer Sign Up!',
 		description: "This is a test holder for a featured post for volunteers to sign up for",
-		image: logo,
+		image: 'https://source.unsplash.com/random',
 		imageText: 'main image description',
 		linkText: 'Continue reading…',
 		id: '0',
@@ -61,17 +57,24 @@ function BuildMainFeaturedPost () {
 		fetchBlogs();
 	}, [])
 
-	
+	let blogImage = ''
 	var length = blogPosts.length;
 
 	if (length > 0) {
 		// console.log(blogPosts.length)
 		// console.log(blogPosts)
+		blogImage = blogPosts[length - 1].linkToPicture
+
+		if (blogImage === '' || blogImage === undefined) {
+			blogImage = logo
+			// console.log('image variable is undefined or null');
+		}
+
 		mainFeaturedPost = {
 			title: blogPosts[length - 1].title,
 			description: blogPosts[length - 1].content,
-			image: logo,
-			imageText: 'logo image',
+			image: blogImage,
+			imageText: blogImage,
 			linkText: 'Continue reading…',
 			id: blogPosts[length - 1]._id,
 		};

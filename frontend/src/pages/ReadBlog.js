@@ -115,30 +115,35 @@ export default function ReadBlog() {
 	}, [])
 
 	// console.log("break")
-	console.log(blogPosts)
+	// console.log(blogPosts)
 
 	for (let i = 0; i < blogPosts.length; i++) {
         if (blogPosts[i]._id == url_id) {
             blogTitle = blogPosts[i].title
 			blogBody = blogPosts[i].content
-			// blogImage = blogPosts[i].linkToPicture	// COMMENT IN FOR 
-			blogImage = logo 	// comment in for stock image
-        }
-    }
+			blogImage = blogPosts[i].linkToPicture	// COMMENT IN FOR 
+			// blogImage = logo 	// comment in for stock image
+			
+		}
+	}
 
-    console.log(blogTitle)
-    console.log(blogBody)
-    console.log(blogImage)
+    if (blogImage === '' || blogImage === undefined) {
+		blogImage = logo
+		// console.log('image variable is undefined or null');
+	}
+
+    // console.log(blogTitle)
+    // console.log(blogBody)
+    // console.log(blogImage)
+    // console.log(url_id)
 
     let markdown = ""
-    markdown = "# " + blogTitle + "\n\n" + blogBody
-    // markdown = blogImage + "# " + blogTitle + "\n\n" + blogBody
-    // if (url_id == 'undefined') {
-    // 	markdown = "# Big ol title\n\nThis is where your post could be read"
-    // }
-    // else {
-    // 	markdown = "# " + blogTitle + "\n\n" + blogBody
-    // }
+    if (url_id === undefined || url_id === '' || url_id === null) {
+    	markdown = "# Big ol title\n\nThis is where your post could be read"
+    }
+    else {
+    	markdown = "# " + blogTitle + "\n\n" + blogBody
+    }
 
 	return (
 		<ThemeProvider theme={theme}>

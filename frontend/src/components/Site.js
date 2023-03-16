@@ -23,6 +23,7 @@ import Sidebar from './Sidebar';
 import Footer from './utils/Footer';
 import BuildMainFeaturedPost from '../actions/BuildMainFeaturedPost';
 import BuildFeaturedPosts from '../actions/BuildFeaturedPosts';
+import BuildFrontSiteInformation from '../actions/BuildFrontSiteInformation';
 
 // ~~~ Static Assets ~~~ //
 import siteInfo1 from '../static/media/site-info/site-info1.md';
@@ -86,7 +87,7 @@ export default function Blog() {
 					<BuildMainFeaturedPost />
 					<BuildFeaturedPosts />
 					<Grid container spacing={5} sx={{ mt: 3 }}>
-						<SiteInformation />
+						<BuildFrontSiteInformation />
 						<Sidebar
 							title={sidebar.title}
 							description={sidebar.description}
