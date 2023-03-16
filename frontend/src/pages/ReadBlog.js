@@ -121,7 +121,7 @@ export default function ReadBlog() {
         if (blogPosts[i]._id == url_id) {
             blogTitle = blogPosts[i].title
 			blogBody = blogPosts[i].content
-			// blogImage = blogPosts[i].linkToPicture
+			// blogImage = blogPosts[i].linkToPicture	// COMMENT IN FOR 
 			blogImage = logo 	// comment in for stock image
         }
     }
