@@ -31,7 +31,8 @@ import siteInfo2 from '../static/media/site-info/site-info2.md';
 import logo from '../static/media/pictures/CyientP5Logo.png';
 
 // ~~~ Blog Posts Assets ~~~ //
-const getPostsURL = "http://localhost:8000/api/blog/getall";
+import GetServerUrl from '../components/utils/GetServerUrl';
+const getPostsURL = GetServerUrl + "blog/getall";
 // const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
 // let dataGlobal;
 

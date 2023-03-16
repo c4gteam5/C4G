@@ -20,8 +20,10 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 // ~~~ Pages ~~~ //
 import Header from '../components/utils/Header';
-import MainFeaturedPost from '../components/MainFeaturedPost';
+// import MainFeaturedPost from '../components/MainFeaturedPost';
 // import FeaturedPost from './FeaturedPost';
+import BuildMainFeaturedPost from '../actions/BuildMainFeaturedPost';
+import BuildFeaturedPosts from '../actions/BuildFeaturedPosts';
 import Sidebar from '../components/Sidebar';
 import Footer from '../components/utils/Footer';
 
@@ -32,7 +34,9 @@ import siteInfo3 from '../static/media/site-info/site-info3.md';
 
 import logo from '../static/media/pictures/CyientP5Logo.png';
 
-const getPostsURL = "http://localhost:8000/api/blog/getall";
+// ~~~ Blog Posts Assets ~~~ //
+import GetServerUrl from '../components/utils/GetServerUrl';
+const getPostsURL = GetServerUrl + "blog/getall";
 // const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
 
 // function grabblogPosts() {
@@ -52,23 +56,6 @@ const SiteInformation = (): JSX.Element => {
 	useEffect(() => {
 		fetch(siteInfo2).then(res => res.text()).then(text => setSiteText2(text))
 	})
-
-	// useEffect(() => {
-	// 	fetch('http://localhost:8000/api/blog/getall').then(res => res.text()).then(text => setSiteText3(text))
-	// })
-
-
-	// const [apiCall, setApiCall] = React.useState(null);
-	// React.useEffect(() => {
-	// 	axios.get(getPostsURL).then((response) => {
-
-	// 			console.log(response.data.posts[0]._id)
-	// 			console.log(response.data.posts[0].title)
-	// 			console.log(response.data.posts[0].content)
-	// 			// console.log(response.data)
-	// 		});
-	// 	}, 
-	// []);
 
 	useEffect(() => {
 		fetch(getPostsURL).then(response => {
@@ -103,17 +90,69 @@ const sections = [
 	{title: 'Parent Organization', url: 'https://www.cyient.com/'}
 ];
 
-const mainFeaturedPost = {
-	title: 'Volunteer Sign Up!',
-	description: "This is a test holder for a featured post for volunteers to sign up for",
-	image: logo,
-	imageText: 'main image description',
-	linkText: 'Continue reading…',
-};
-
 const theme = createTheme();
 
+function GrabPostByID(blogPosts, url_id) {
+	const [blogTitle, blogTitleText] = useState('')
+	const [blogBody, blogBodyText] = useState('')
+	console.log(blogPosts)
+	for (let i = 0; i < blogPosts.length; i++) {
+		// console.log(blogPosts[i]._id)
+        if (blogPosts[i]._id == url_id) {
+            // return(blogPosts[i].product);
+            blogTitleText(blogPosts[i].title);
+			blogBodyText(blogPosts[i].content);
+			// console.log(blogPosts[i])
+			break;
+        }
+    }
+    console.log(blogTitle)
+    console.log(blogBody)
+    return [blogTitle, blogBody];
+}
+
 export default function ReadBlog() {
+	const queryParameters = new URLSearchParams(window.location.search)
+	const url_id = queryParameters.get("id")
+
+	var [blogPosts, blogPostsSwitch] = useState([])
+	let blogTitle = ''
+	let blogBody = ''
+
+	const fetchBlogs = async () => {
+			fetch(getPostsURL)
+				.then((res) => res.json())
+				.then((data) => {
+
+				blogPostsSwitch(data.posts)
+			})
+		};
+
+	useEffect(() => {
+		fetchBlogs();
+	}, [])
+
+	console.log("break")
+	console.log(blogPosts)
+
+	for (let i = 0; i < blogPosts.length; i++) {
+        if (blogPosts[i]._id == url_id) {
+            blogTitle = blogPosts[i].title
+			blogBody = blogPosts[i].content
+        }
+    }
+
+    console.log(blogTitle)
+    console.log(blogBody)
+
+    let markdown = ""
+    if (url_id != "") {
+    	markdown = "# Big ol title\n\nThis is where your post could be read"
+    }
+    else {
+    	markdown = "# " + blogTitle + "\n\n" + blogBody
+    }
+
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
@@ -121,9 +160,13 @@ export default function ReadBlog() {
 				<Header title="Cyient Foundation - P5" sections={sections} />
 				<main>
 					{/*Featured posts and other posts here*/}
-					<MainFeaturedPost post={mainFeaturedPost} />
+					<BuildMainFeaturedPost />
+					<BuildFeaturedPosts />
 					<Grid container spacing={5} sx={{ mt: 3 }}>
-						<SiteInformation />
+						<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
+							<Divider />
+							<ReactMarkdown children={markdown} />
+						</Grid>
 						<Sidebar
 							title={sidebar.title}
 							description={sidebar.description}

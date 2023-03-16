@@ -30,7 +30,8 @@ import image1 from '../static/media/pictures/CyientRobot1.png';
 import image2 from '../static/media/pictures/CyientRobot2.png';
 
 // ~~~ Blog Posts Assets ~~~ //
-const getPostsURL = "http://localhost:8000/api/blog/getall";
+import GetServerUrl from '../components/utils/GetServerUrl';
+const getPostsURL = GetServerUrl + "blog/getall";
 // const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
 
 
@@ -45,6 +46,7 @@ function BuildFeaturedPosts () {
 			description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
 			image: 'https://source.unsplash.com/random',
 			imageLabel: 'Image Text',
+			id: '0',
 		},
 		{
 			title: 'Post title',
@@ -52,6 +54,7 @@ function BuildFeaturedPosts () {
 			description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
 			image: 'https://source.unsplash.com/random',
 			imageLabel: 'Image Text',
+			id: '0',
 		},
 	];
 
@@ -76,21 +79,23 @@ function BuildFeaturedPosts () {
 		console.log(blogPosts)
 
 		featuredPosts = [
-		{
-			title: blogPosts[length - 2].title,
-			date: 'Feb 20',
-			description: blogPosts[length - 2].content,
-			image: image1,
-			imageLabel: 'Image Text',
-		},
-		{
-			title: blogPosts[length - 3].title,
-			date: 'Feb 21',
-			description: blogPosts[length - 3].content,
-			image: image2,
-			imageLabel: 'Image Text',
-		},
-	];
+			{
+				title: blogPosts[length - 2].title,
+				date: 'Feb 20',
+				description: blogPosts[length - 2].content,
+				image: image1,
+				imageLabel: 'Image Text',
+				id: blogPosts[length - 2]._id,
+			},
+			{
+				title: blogPosts[length - 3].title,
+				date: 'Feb 21',
+				description: blogPosts[length - 3].content,
+				image: image2,
+				imageLabel: 'Image Text',
+				id: blogPosts[length - 3]._id,
+			},
+		];
 	}
 	else if (length > 1 && length < 2) {
 		featuredPosts = {
@@ -99,6 +104,7 @@ function BuildFeaturedPosts () {
 			description: blogPosts[length - 2].content,
 			image: image1,
 			imageLabel: 'Image Text',
+			id: blogPosts[length - 2]._id,
 		};
 	}
 

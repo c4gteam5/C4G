@@ -18,6 +18,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 
+import {Link as RouterLink } from "react-router-dom";
+
 // ~~~ Pages ~~~ //
 // import Header from './utils/Header';
 import MainFeaturedPost from '../components/MainFeaturedPost';
@@ -28,23 +30,22 @@ import MainFeaturedPost from '../components/MainFeaturedPost';
 import logo from '../static/media/pictures/CyientP5Logo.png';
 
 // ~~~ Blog Posts Assets ~~~ //
-const getPostsURL = "http://localhost:8000/api/blog/getall";
+import GetServerUrl from '../components/utils/GetServerUrl';
+const getPostsURL = GetServerUrl + "blog/getall";
 // const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
-
-
 
 
 
 function BuildMainFeaturedPost () {
 	const [blogPosts, blogPostsSwitch] = useState([])
-	// var blogPosts = [];
-
+	console.log(getPostsURL)
 	var mainFeaturedPost = {
 		title: 'Volunteer Sign Up!',
 		description: "This is a test holder for a featured post for volunteers to sign up for",
 		image: logo,
 		imageText: 'main image description',
 		linkText: 'Continue reading…',
+		id: '0',
 	};
 
 	const fetchBlogs = async () => {
@@ -60,54 +61,6 @@ function BuildMainFeaturedPost () {
 		fetchBlogs();
 	}, [])
 
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 	const result = await axios(
-	// 		getPostsURL,
-	// 	);
-
-	// 	blogPostsSwitch(result.posts);
-	// 	};
-
-    // 	fetchData();
-	// }, []);
-
-	// React.useEffect(() => {
-	// 	axios.get(getPostsURL)
-	// 		.then((response) => {
-	// 			response.data.posts[0]((post) => {
-	// 				blogPostsSwitch(post)
-	// 			})
-	// 		})
-	// 	})
-
-	  
-	//   const getData = async () => {
-	//   	try {
-	// 	    const response = await fetch(getPostsURL);
-	// 	    const data = await response.json();
-	// 	    blogPostsSwitch(data);
-	// 	    return data;
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	//   };
-
-	//   await getData();
-	//   // console.log(data_local);
-	  
-	// })();
-
-	// const fetchTodos = async () => {
-	//   try {
-	//     const response = await fetch(getPostsURL);
-	//     const data = await response.json();
-	//     blogPostsSwitch(data);
-	//     // console.log(data);
-	//   } catch (error) {
-	//     console.log(error);
-	//   }
-	// };
 	
 	var length = blogPosts.length;
 
@@ -120,6 +73,7 @@ function BuildMainFeaturedPost () {
 			image: logo,
 			imageText: 'logo image',
 			linkText: 'Continue reading…',
+			id: blogPosts[length - 1]._id,
 		};
 	}
 
@@ -129,3 +83,5 @@ function BuildMainFeaturedPost () {
 }
 
 export default BuildMainFeaturedPost;
+
+			// <Button component={RouterLink} to="/read-blog-post" size="small">Read Blog Post</Button>
