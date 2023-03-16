@@ -10,8 +10,7 @@ const blogPostsSchema = new mongoose.Schema({
         required: [true, 'Content is required']
       },
     linkToPicture: {
-      type: String,
-      required: [true, 'link to picture is required'],
+      type: String
 
     },
     createdAt: { type : Date}
