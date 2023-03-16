@@ -99,6 +99,7 @@ export default function ReadBlog() {
 	var [blogPosts, blogPostsSwitch] = useState([])
 	let blogTitle = ''
 	let blogBody = ''
+	let blogImage = ''
 
 	const fetchBlogs = async () => {
 			fetch(getPostsURL)
@@ -114,20 +115,24 @@ export default function ReadBlog() {
 	}, [])
 
 	// console.log("break")
-	// console.log(blogPosts)
+	console.log(blogPosts)
 
 	for (let i = 0; i < blogPosts.length; i++) {
         if (blogPosts[i]._id == url_id) {
             blogTitle = blogPosts[i].title
 			blogBody = blogPosts[i].content
+			// blogImage = blogPosts[i].linkToPicture
+			blogImage = logo 	// comment in for stock image
         }
     }
 
-    // console.log(blogTitle)
-    // console.log(blogBody)
+    console.log(blogTitle)
+    console.log(blogBody)
+    console.log(blogImage)
 
     let markdown = ""
     markdown = "# " + blogTitle + "\n\n" + blogBody
+    // markdown = blogImage + "# " + blogTitle + "\n\n" + blogBody
     // if (url_id == 'undefined') {
     // 	markdown = "# Big ol title\n\nThis is where your post could be read"
     // }
@@ -147,6 +152,10 @@ export default function ReadBlog() {
 					<Grid container spacing={5} sx={{ mt: 3 }}>
 						<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
 							<Divider />
+							<img
+								src={blogImage}
+								style={{ maxWidth: "100%" }}
+							/>
 							<ReactMarkdown children={markdown} />
 						</Grid>
 						<Sidebar

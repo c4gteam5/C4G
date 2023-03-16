@@ -83,5 +83,3 @@ function BuildMainFeaturedPost () {
 }
 
 export default BuildMainFeaturedPost;
-
-			// <Button component={RouterLink} to="/read-blog-post" size="small">Read Blog Post</Button>
