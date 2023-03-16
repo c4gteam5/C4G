@@ -20,6 +20,8 @@ import Footer from '../components/utils/Footer';
 
 const theme = createTheme();
 
+// https://github.com/pheezx/Next-with-Magic-Link-Auth/blob/master/pages/login.jsx
+
 
 export default function SignUp() {
 
