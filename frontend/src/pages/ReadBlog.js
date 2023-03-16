@@ -92,25 +92,6 @@ const sections = [
 
 const theme = createTheme();
 
-function GrabPostByID(blogPosts, url_id) {
-	const [blogTitle, blogTitleText] = useState('')
-	const [blogBody, blogBodyText] = useState('')
-	console.log(blogPosts)
-	for (let i = 0; i < blogPosts.length; i++) {
-		// console.log(blogPosts[i]._id)
-        if (blogPosts[i]._id == url_id) {
-            // return(blogPosts[i].product);
-            blogTitleText(blogPosts[i].title);
-			blogBodyText(blogPosts[i].content);
-			// console.log(blogPosts[i])
-			break;
-        }
-    }
-    console.log(blogTitle)
-    console.log(blogBody)
-    return [blogTitle, blogBody];
-}
-
 export default function ReadBlog() {
 	const queryParameters = new URLSearchParams(window.location.search)
 	const url_id = queryParameters.get("id")
@@ -132,8 +113,8 @@ export default function ReadBlog() {
 		fetchBlogs();
 	}, [])
 
-	console.log("break")
-	console.log(blogPosts)
+	// console.log("break")
+	// console.log(blogPosts)
 
 	for (let i = 0; i < blogPosts.length; i++) {
         if (blogPosts[i]._id == url_id) {
@@ -142,16 +123,17 @@ export default function ReadBlog() {
         }
     }
 
-    console.log(blogTitle)
-    console.log(blogBody)
+    // console.log(blogTitle)
+    // console.log(blogBody)
 
     let markdown = ""
-    if (url_id != "") {
-    	markdown = "# Big ol title\n\nThis is where your post could be read"
-    }
-    else {
-    	markdown = "# " + blogTitle + "\n\n" + blogBody
-    }
+    markdown = "# " + blogTitle + "\n\n" + blogBody
+    // if (url_id == 'undefined') {
+    // 	markdown = "# Big ol title\n\nThis is where your post could be read"
+    // }
+    // else {
+    // 	markdown = "# " + blogTitle + "\n\n" + blogBody
+    // }
 
 	return (
 		<ThemeProvider theme={theme}>

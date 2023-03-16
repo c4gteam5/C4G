@@ -62,7 +62,7 @@ function BuildFeaturedPosts () {
 		fetch(getPostsURL)
 			.then((res) => res.json())
 			.then((data) => {
-			console.log(data.results);
+			// console.log(data.results);
 			blogPostsSwitch(data.posts);
 		})
 	};
@@ -75,8 +75,8 @@ function BuildFeaturedPosts () {
 	var length = blogPosts.length;
 
 	if (length > 2) {
-		console.log(blogPosts.length)
-		console.log(blogPosts)
+		// console.log(blogPosts.length)
+		// console.log(blogPosts)
 
 		featuredPosts = [
 			{

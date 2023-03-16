@@ -108,7 +108,7 @@ function BuildFeatured(data) {
 	var length = data.length;
 
 	if (length > 0) {
-		console.log(data)
+		// console.log(data)
 		mainFeaturedPost = {
 			title: data[0].title,
 			description: data[0].content,

@@ -38,7 +38,7 @@ const getPostsURL = GetServerUrl + "blog/getall";
 
 function BuildMainFeaturedPost () {
 	const [blogPosts, blogPostsSwitch] = useState([])
-	console.log(getPostsURL)
+	// console.log(getPostsURL)
 	var mainFeaturedPost = {
 		title: 'Volunteer Sign Up!',
 		description: "This is a test holder for a featured post for volunteers to sign up for",
@@ -52,7 +52,7 @@ function BuildMainFeaturedPost () {
 		fetch(getPostsURL)
 			.then((res) => res.json())
 			.then((data) => {
-			console.log(data.results);
+			// console.log(data.results);
 			blogPostsSwitch(data.posts);
 		})
 	};
@@ -65,8 +65,8 @@ function BuildMainFeaturedPost () {
 	var length = blogPosts.length;
 
 	if (length > 0) {
-		console.log(blogPosts.length)
-		console.log(blogPosts)
+		// console.log(blogPosts.length)
+		// console.log(blogPosts)
 		mainFeaturedPost = {
 			title: blogPosts[length - 1].title,
 			description: blogPosts[length - 1].content,
