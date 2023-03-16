@@ -8,7 +8,6 @@ const Posts = () => {
         getPosts(postDispatch);
     }, [postDispatch]);
 
-    console.log(postState);
     return (
         <>
             <h1>Posts</h1>

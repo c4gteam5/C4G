@@ -21,7 +21,6 @@ function App() {
 	const [apiCall, setApiCall] = React.useState(null);
 	React.useEffect(() => {
 		axios.get(baseURL).then((response) => {
-				console.log(response.data)
 				setApiCall(response.data);
 			});
 		}, 

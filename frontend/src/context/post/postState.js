@@ -14,12 +14,12 @@ export const getPosts = async (dispatch) => {
         const res = await axios.get("/api/blog/getall");
         dispatch({
             type: GET_POSTS,
-            payload: res.data
+            payload: res.data.posts
         });
     } catch (err) {
         dispatch({
             type: POST_ERROR,
-            payload: err.response.msg
+            payload: err.response
         });
     }
 };

@@ -23,17 +23,13 @@ const PostForm = () => {
         }
     }, [current]);
 
-    const { title, content, linkToPicture, createdAt } = post || {};
+    const { title = "", content = "", linkToPicture = "", createdAt = Date.now() } = post || {};
 
     const onChange = (e) => setPost({ ...post, [e.target.name]: e.target.value });
     const onSubmit = (e) => {
         e.preventDefault();
         if (current === undefined) {
-            console.log(post);
-            addPost(postDispatch, post).then(() => {
-                    setPost(initialPost);
-            }
-            );
+            addPost(postDispatch, post).then(() => { setPost(initialPost);});
         }
     };
 
