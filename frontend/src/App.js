@@ -14,7 +14,7 @@ import ManagementHome from "./pages/ManagementHome";
 import PostState from "./context/post/postState";
 
 //const baseURL = "http://localhost:8000/api/healthcheck";
-const baseURL = "const baseURL = https://c4g-backend-2.onrender.com/api/healthcheck";
+const baseURL = "https://c4g-backend-2.onrender.com/api/healthcheck";
 
 function App() {
 	
