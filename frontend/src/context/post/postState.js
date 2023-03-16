@@ -11,7 +11,7 @@ export const usePosts = () => {
 
 export const getPosts = async (dispatch) => {
     try {
-        const res = await axios.get('/getall');
+        const res = await axios.get("/api/blog/getall");
         dispatch({
             type: GET_POSTS,
             payload: res.data

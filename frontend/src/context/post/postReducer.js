@@ -9,7 +9,7 @@ const postReducer = (state, action) => {
         case GET_POSTS:
             return {
                 ...state,
-                posts: action.payload
+                posts: Array.isArray(action.payload) ? action.payload : []
             };
         case ADD_POST :
             return {

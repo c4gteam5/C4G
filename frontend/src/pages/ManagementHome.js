@@ -6,6 +6,7 @@ import Header from "../components/utils/Header";
 import Footer from "../components/utils/Footer";
 import { usePosts } from "../context/post/postState";
 import PostForm from "../components/posts/PostForm";
+import Posts from "../components/posts/Posts"
 
 const ManagementHome = () => {
     const theme = createTheme();
@@ -17,6 +18,7 @@ const ManagementHome = () => {
 
                     <PostForm />
 
+                <Posts />
 
             </Container>
             <Footer title="Cyient Foundation Management Portal - P5"/>

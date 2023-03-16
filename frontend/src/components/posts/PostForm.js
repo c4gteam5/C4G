@@ -5,6 +5,7 @@ const initialPost = {
     title: "",
     content: "",
     linkToPicture: "",
+    createdAt: Date.now()
 };
 
 const PostForm = () => {
@@ -28,6 +29,7 @@ const PostForm = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         if (current === undefined) {
+            console.log(post);
             addPost(postDispatch, post).then(() => {
                     setPost(initialPost);
             }
@@ -38,7 +40,7 @@ const PostForm = () => {
     return (
         <form onSubmit={onSubmit}>
             <h2 className='text-primary'>
-                {current ? 'Edit Contact' : 'Add Contact'}
+                New Post
             </h2>
             <input
                 type='text'
@@ -54,17 +56,10 @@ const PostForm = () => {
                 value={content}
                 onChange={onChange}
             />
-            <input
-                type='text'
-                placeholder='link To Image'
-                name='linkToPicture'
-                value={linkToPicture}
-                onChange={onChange}
-            />
             <div>
                 <input
                     type='submit'
-                    value={current ? 'Update Contact' : 'Add Contact'}
+                    value={'Create'}
                     className='btn btn-primary btn-block'
                 />
             </div>
