@@ -20,6 +20,8 @@ import Footer from '../components/utils/Footer';
 
 const theme = createTheme();
 
+// https://github.com/pheezx/Next-with-Magic-Link-Auth/blob/master/pages/login.jsx
+
 
 export default function SignUp() {
 
@@ -172,7 +174,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-		<Footer title="Cyient Foundation - P5" />
+		<Footer title="Cyient Foundation - P5" description="Cyient (Estd: 1991, NSE: CYIENT) is a global digital engineering and technology company."/>
       </Container>
     </ThemeProvider>
   );
