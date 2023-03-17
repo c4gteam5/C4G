@@ -7,8 +7,10 @@ exports.createPost = async (req, res) => {
     });
   }
 
+  let post
+
   try {
-    await Post.create({
+    post = await Post.create({
       title: req.body.title,
       content: req.body.content,
       linkToPicture: req.body.link,
@@ -20,7 +22,7 @@ exports.createPost = async (req, res) => {
   }
 
   return res.status(201).json({
-    message: "blog post created",
+    post,
   });
 };
 
