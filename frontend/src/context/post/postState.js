@@ -24,7 +24,7 @@ export const getPosts = async (dispatch) => {
     }
 };
 
-export const addPost = async (dispatch, post) => {
+export const addPost = async (post, dispatch) => {
     try {
         const res = await axios.post("/api/blog/create", post);
         dispatch({
