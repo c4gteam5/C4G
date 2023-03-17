@@ -1,5 +1,6 @@
 import { getPosts, usePosts } from "../../context/post/postState";
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const Posts = () => {
     const [postState, postDispatch] = usePosts();
@@ -9,15 +10,23 @@ const Posts = () => {
     }, [postDispatch]);
 
     return (
-        <>
-            <h1>Posts</h1>
-            {posts.map((post, index) => (
-                <div key={index}>
-                    <h2>{post.title}</h2>
-                    <p>{post.content}</p>
-                </div>
-            ))}
-        </>
+        <Fragment>
+            {posts !== null ? (
+                <TransitionGroup>
+                    posts.map((post) => (
+                    <CSSTransition
+                        key={post._id}
+                        timeout={500}
+                        classNames='item'
+                    >
+                        <ContactItem post={post} />
+                    </CSSTransition>
+                    ))
+                </TransitionGroup>
+            ) : (
+                <Spinner />
+            )}
+        </Fragment>
     );
 }
 
