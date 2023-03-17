@@ -107,12 +107,12 @@ function BuildFrontSiteInformation() {
 		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
 			<Divider />
 			<ReactMarkdown children={siteText1} />
-			<Link variant="subtitle1" href={targetURL1}>
+			<Link variant="subtitle1" component={RouterLink} to={targetURL1}>
 				Continue Reading...
 			</Link>
 			<Divider />
 			<ReactMarkdown children={siteText2} />
-			<Link variant="subtitle1" href={targetURL2}>
+			<Link variant="subtitle1" component={RouterLink} to={targetURL2}>
 				Continue Reading...
 			</Link>
 		</Grid>
