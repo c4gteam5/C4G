@@ -172,7 +172,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-		<Footer title="Cyient Foundation - P5" />
+		<Footer title="Cyient Foundation - P5" description="Cyient (Estd: 1991, NSE: CYIENT) is a global digital engineering and technology company."/>
       </Container>
     </ThemeProvider>
   );

@@ -1,3 +1,6 @@
+// ~~~ API Libraries ~~~ // 
+import axios from "axios";
+
 // ~~~ React Libraries ~~~ //
 import * as React from 'react';
 import { useState, useEffect } from 'react'
@@ -16,18 +19,17 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 // ~~~ Pages ~~~ //
-import Header from './utils/Header';
-import MainFeaturedPost from './MainFeaturedPost';
-import FeaturedPost from './FeaturedPost';
-import Sidebar from './Sidebar';
-import Footer from './utils/Footer';
+import Header from '../components/utils/Header';
 import BuildMainFeaturedPost from '../actions/BuildMainFeaturedPost';
 import BuildFeaturedPosts from '../actions/BuildFeaturedPosts';
-import BuildFrontSiteInformation from '../actions/BuildFrontSiteInformation';
+import BuildArchiveSiteInformation from '../actions/BuildArchiveSiteInformation';
+import Sidebar from '../components/Sidebar';
+import Footer from '../components/utils/Footer';
 
 // ~~~ Static Assets ~~~ //
 import siteInfo1 from '../static/media/site-info/site-info1.md';
 import siteInfo2 from '../static/media/site-info/site-info2.md';
+import siteInfo3 from '../static/media/site-info/site-info3.md';
 
 import logo from '../static/media/pictures/CyientP5Logo.png';
 
@@ -35,32 +37,6 @@ import logo from '../static/media/pictures/CyientP5Logo.png';
 import GetServerUrl from '../components/utils/GetServerUrl';
 const getPostsURL = GetServerUrl + "blog/getall";
 
-// ~~~ Capture Markdown Information to JSX ~~~ //
-const SiteInformation = (): JSX.Element => {
-	const [siteText1, setSiteText1] = useState('')
-	const [siteText2, setSiteText2] = useState('')
-	
-	useEffect(() => {
-		fetch(siteInfo1).then(res => res.text()).then(text => setSiteText1(text))
-	})
-	
-	useEffect(() => {
-		fetch(siteInfo2).then(res => res.text()).then(text => setSiteText2(text))
-	})
-
-	return (
-		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
-			<Divider />
-			<ReactMarkdown children={siteText1} />
-			<Divider />
-			<ReactMarkdown children={siteText2} />
-		</Grid>
-	)
-}
-
-const sections = [
-	{title: 'Parent Organization', url: 'https://www.cyient.com/'}
-];
 
 const sidebar = {
 	title: 'About',
@@ -75,19 +51,25 @@ const sidebar = {
 	],
 };
 
+const sections = [
+	{title: 'Parent Organization', url: 'https://www.cyient.com/'}
+];
+
 const theme = createTheme();
 
-export default function Blog() {
+export default function Archive() {
+
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<Container maxWidth="lg">
 				<Header title="Cyient Foundation - P5" sections={sections} />
 				<main>
+					{/*Featured posts and other posts here*/}
 					<BuildMainFeaturedPost />
 					<BuildFeaturedPosts />
 					<Grid container spacing={5} sx={{ mt: 3 }}>
-						<BuildFrontSiteInformation />
+						<BuildArchiveSiteInformation />
 						<Sidebar
 							title={sidebar.title}
 							description={sidebar.description}
