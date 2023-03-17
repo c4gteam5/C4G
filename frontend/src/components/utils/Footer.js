@@ -12,7 +12,7 @@ function Copyright() {
 	return (
 		<Typography variant="body2" color="text.secondary" align="center">
 			{'Copyright © '}
-			<Link color="inherit" href="https://https://c4g-frontend.onrender.com/">
+			<Link color="inherit" href="https://c4g-frontend.onrender.com/">
 				Cyient Foundation
 			</Link>{' '}
 			{new Date().getFullYear()}
