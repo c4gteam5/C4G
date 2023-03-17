@@ -34,7 +34,7 @@ const volunteerSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please tell us your areas of interest!']
       },
-    createdAt: { type : Date}
+    createdAt: { type : Date, default: Date.now}
   });
 
 
