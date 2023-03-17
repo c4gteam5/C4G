@@ -11,6 +11,9 @@ blogPostsRoutes.get("/getall", blogPostsController.getAllBlogPosts)
 
 blogPostsRoutes.post("/create", blogPostsController.createPost)
 
+// delete blog post using blog post ID
+blogPostsRoutes.route("/:id").delete(blogPostsController.deleteBlogPost).patch(blogPostsController.updateBlogPost)
+
 
 module.exports = blogPostsRoutes;
 
