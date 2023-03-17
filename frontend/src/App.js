@@ -14,8 +14,8 @@ import ManagementHome from "./pages/ManagementHome";
 import ReadBlog from "./pages/ReadBlog";
 import Archive from "./pages/Archive";
 
-const baseURL = "http://localhost:8000/api/healthcheck";
-// const baseURL = "https://c4g-backend-2.onrender.com/api/healthcheck";
+// const baseURL = "http://localhost:8000/api/healthcheck";
+const baseURL = "https://c4g-backend-2.onrender.com/api/healthcheck";
 
 function App() {
 	
