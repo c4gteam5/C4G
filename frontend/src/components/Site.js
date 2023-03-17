@@ -21,12 +21,19 @@ import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Sidebar from './Sidebar';
 import Footer from './utils/Footer';
+import BuildMainFeaturedPost from '../actions/BuildMainFeaturedPost';
+import BuildFeaturedPosts from '../actions/BuildFeaturedPosts';
+import BuildFrontSiteInformation from '../actions/BuildFrontSiteInformation';
 
 // ~~~ Static Assets ~~~ //
 import siteInfo1 from '../static/media/site-info/site-info1.md';
 import siteInfo2 from '../static/media/site-info/site-info2.md';
 
 import logo from '../static/media/pictures/CyientP5Logo.png';
+
+// ~~~ Blog Posts Assets ~~~ //
+import GetServerUrl from '../components/utils/GetServerUrl';
+const getPostsURL = GetServerUrl + "blog/getall";
 
 // ~~~ Capture Markdown Information to JSX ~~~ //
 const SiteInformation = (): JSX.Element => {
@@ -55,36 +62,11 @@ const sections = [
 	{title: 'Parent Organization', url: 'https://www.cyient.com/'}
 ];
 
-const mainFeaturedPost = {
-	title: 'Volunteer Sign Up!',
-	description: "This is a test holder for a featured post for volunteers to sign up for",
-	image: logo,
-	imageText: 'main image description',
-	linkText: 'Continue reading…',
-};
-
-const featuredPosts = [
-	{
-		title: 'Featured post',
-		date: 'Feb 20',
-		description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
-		image: 'https://source.unsplash.com/random',
-		imageLabel: 'Image Text',
-	},
-	{
-		title: 'Post title',
-		date: 'Feb 21',
-		description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
-		image: 'https://source.unsplash.com/random',
-		imageLabel: 'Image Text',
-	},
-];
-
 const sidebar = {
 	title: 'About',
 	description: 'Cyient Design Led Manufacturing (DLM) strives to give back to society through Cyient Foundation with a focus on local communities through a series of Corporate Social Responsibility (CSR) initiatives on well-being, education, sustainable development, and the environment.',
 	archives: [
-		{title: 'Some News article for Feb. 2023', url: '#'},
+		{title: 'Read all our posts', url: '/archive'},
 	],
 	social: [
 		{name: 'GitHub', icon: GitHubIcon, url: 'https://github.com/c4gteam5/C4G'},
@@ -102,14 +84,10 @@ export default function Blog() {
 			<Container maxWidth="lg">
 				<Header title="Cyient Foundation - P5" sections={sections} />
 				<main>
-					<MainFeaturedPost post={mainFeaturedPost} />
-					<Grid container spacing={4}>
-						{featuredPosts.map((post) => (
-						  <FeaturedPost key={post.title} post={post} />
-						))}
-					</Grid>
+					<BuildMainFeaturedPost />
+					<BuildFeaturedPosts />
 					<Grid container spacing={5} sx={{ mt: 3 }}>
-						<SiteInformation />
+						<BuildFrontSiteInformation />
 						<Sidebar
 							title={sidebar.title}
 							description={sidebar.description}

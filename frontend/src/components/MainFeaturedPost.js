@@ -9,8 +9,12 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
+import {Link as RouterLink } from "react-router-dom";
+
 function MainFeaturedPost(props) {
 	const {post} = props;
+
+	let targetURL = "/read-blog-post" + "?id=" + post.id
 	return (
 		<Paper
 				sx={{
@@ -45,7 +49,7 @@ function MainFeaturedPost(props) {
 						<Typography variant="h5" color="inherit" paragraph>
 						  {post.description}
 						</Typography>
-						<Link variant="subtitle1" href="frontend/src#">
+						<Link variant="subtitle1" href={targetURL}>
 						  {post.linkText}
 						</Link>
 					</Box>
@@ -62,6 +66,7 @@ MainFeaturedPost.propTypes = {
 		imageText: PropTypes.string.isRequired,
 		linkText: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
+		id: PropTypes.string.isRequired,
 	}).isRequired,
 };
 
