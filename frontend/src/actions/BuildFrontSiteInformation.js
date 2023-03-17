@@ -25,9 +25,9 @@ import {Link as RouterLink } from "react-router-dom";
 // ~~~ Pages ~~~ //
 import FeaturedPost from '../components/FeaturedPost';
 
-import logo from '../static/media/pictures/CyientP5Logo.png';
-import image1 from '../static/media/pictures/CyientRobot1.png';
-import image2 from '../static/media/pictures/CyientRobot2.png';
+import logo from '../static/media/pictures/CyientP5Logo.webp';
+import image1 from '../static/media/pictures/CyientRobot1.webp';
+import image2 from '../static/media/pictures/CyientRobot2.webp';
 
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';

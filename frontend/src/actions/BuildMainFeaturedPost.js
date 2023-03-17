@@ -23,7 +23,7 @@ import {Link as RouterLink } from "react-router-dom";
 // ~~~ Pages ~~~ //
 import MainFeaturedPost from '../components/MainFeaturedPost';
 
-import logo from '../static/media/pictures/CyientP5Logo.png';
+import logo from '../static/media/pictures/CyientP5Logo.webp';
 
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';
