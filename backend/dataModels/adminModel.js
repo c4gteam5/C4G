@@ -37,9 +37,9 @@ const adminSchema = new mongoose.Schema({
       message: 'Passwords are not the same'
     }
   },
-  passwordChangedAt: Date,
+  passwordChangedAt: { type : Date, default: Date.now},
   passwordResetToken: String,
-  passwordResetExpires: Date,
+  passwordResetExpires: { type : Date, default: Date.now},
   active: {
     type: Boolean,
     default: true,
