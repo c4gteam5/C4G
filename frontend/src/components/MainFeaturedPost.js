@@ -49,7 +49,7 @@ function MainFeaturedPost(props) {
 						<Typography variant="h5" color="inherit" paragraph>
 						  {post.description}
 						</Typography>
-						<Link variant="subtitle1" href={targetURL}>
+						<Link variant="subtitle1" component={RouterLink} to={targetURL}>
 						  {post.linkText}
 						</Link>
 					</Box>

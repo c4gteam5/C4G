@@ -109,7 +109,7 @@ function BuildArchiveSiteInformation() {
 				return <div>
 					<Divider />
 					<ReactMarkdown children={text}/>
-					<Link variant="subtitle1" href={blogURL[index]}>Continue Reading...</Link>
+					<Link variant="subtitle1" component={RouterLink} to={blogURL[index]}>Continue Reading...</Link>
 				</div>
 			})}
 			

@@ -35,28 +35,6 @@ import logo from '../static/media/pictures/CyientP5Logo.png';
 import GetServerUrl from '../components/utils/GetServerUrl';
 const getPostsURL = GetServerUrl + "api/blog/getall";
 
-// ~~~ Capture Markdown Information to JSX ~~~ //
-const SiteInformation = (): JSX.Element => {
-	const [siteText1, setSiteText1] = useState('')
-	const [siteText2, setSiteText2] = useState('')
-	
-	useEffect(() => {
-		fetch(siteInfo1).then(res => res.text()).then(text => setSiteText1(text))
-	})
-	
-	useEffect(() => {
-		fetch(siteInfo2).then(res => res.text()).then(text => setSiteText2(text))
-	})
-
-	return (
-		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
-			<Divider />
-			<ReactMarkdown children={siteText1} />
-			<Divider />
-			<ReactMarkdown children={siteText2} />
-		</Grid>
-	)
-}
 
 const sections = [
 	{title: 'Parent Organization', url: 'https://www.cyient.com/'}
@@ -66,7 +44,7 @@ const sidebar = {
 	title: 'About',
 	description: 'Cyient Design Led Manufacturing (DLM) strives to give back to society through Cyient Foundation with a focus on local communities through a series of Corporate Social Responsibility (CSR) initiatives on well-being, education, sustainable development, and the environment.',
 	archives: [
-		{title: 'Read all our posts', url: GetServerUrl + '/archive'},
+		{title: 'Read all our posts', url: '/archive'},
 	],
 	social: [
 		{name: 'GitHub', icon: GitHubIcon, url: 'https://github.com/c4gteam5/C4G'},
