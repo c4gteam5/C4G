@@ -4,6 +4,8 @@ import * as React from "react";
 import Container from "@mui/material/Container";
 import Header from "../components/utils/Header";
 import Footer from "../components/utils/Footer";
+import { usePosts } from "../context/post/postState";
+import PostForm from "../components/posts/PostForm";
 
 const ManagementHome = () => {
     const theme = createTheme();
@@ -13,6 +15,7 @@ const ManagementHome = () => {
             <CssBaseline />
             <Container maxWidth="lg">
 
+                    <PostForm />
 
 
             </Container>
