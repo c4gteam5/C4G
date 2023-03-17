@@ -11,7 +11,8 @@ import Site from './components/Site';
 import AdminSignIn from "./pages/AdminSignIn";
 import VolunteerSignUp from "./pages/VolunteerSignUp";
 import ManagementHome from "./pages/ManagementHome";
-import ReadBlog from "./pages/ReadBlog"
+import ReadBlog from "./pages/ReadBlog";
+import Archive from "./pages/Archive";
 import PostState from "./context/post/postState";
 
 const baseURL = "http://localhost:8000/api/healthcheck";
