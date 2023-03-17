@@ -13,7 +13,7 @@ const blogPostsSchema = new mongoose.Schema({
       type: String
 
     },
-    createdAt: { type : Date}
+    createdAt: { type : Date, default: Date.now}
   });
 
 
