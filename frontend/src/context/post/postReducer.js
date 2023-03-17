@@ -5,7 +5,6 @@ import {
 } from "../types";
 
 const postReducer = (state, action) => {
-    console.log(action);
     switch (action.type) {
         case GET_POSTS:
             return {
@@ -15,7 +14,7 @@ const postReducer = (state, action) => {
         case ADD_POST :
             return {
                 ...state,
-                posts: [action.payload, ...state.posts]
+                posts: [action.payload.post, ...state.posts]
             };
         case POST_ERROR:
             return {
