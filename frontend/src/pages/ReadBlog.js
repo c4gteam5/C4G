@@ -77,7 +77,7 @@ const sidebar = {
 	title: 'About',
 	description: 'Cyient Design Led Manufacturing (DLM) strives to give back to society through Cyient Foundation with a focus on local communities through a series of Corporate Social Responsibility (CSR) initiatives on well-being, education, sustainable development, and the environment.',
 	archives: [
-		{title: 'Read all our posts', url: '/archive'},
+		{title: 'Read all our posts', url: 'archive'},
 	],
 	social: [
 		{name: 'GitHub', icon: GitHubIcon, url: 'https://github.com/c4gteam5/C4G'},

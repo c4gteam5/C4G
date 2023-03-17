@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import {Link as RouterLink } from "react-router-dom";
 
 function Sidebar(props) {
 	const {archives, description, social, title} = props;
@@ -26,7 +27,7 @@ function Sidebar(props) {
 				Archives 
 			</Typography>
 			{archives.map((archive) => (
-				<Link display="block" variant="body1" href={archive.url} key={archive.title}>
+				<Link display="block" variant="body1" component={RouterLink} to={archive.url} key={archive.title}>
 				  {archive.title}
 				</Link>
 			))}
