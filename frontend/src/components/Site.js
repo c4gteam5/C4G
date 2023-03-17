@@ -33,7 +33,7 @@ import logo from '../static/media/pictures/CyientP5Logo.png';
 
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';
-const getPostsURL = GetServerUrl + "blog/getall";
+const getPostsURL = GetServerUrl + "api/blog/getall";
 
 // ~~~ Capture Markdown Information to JSX ~~~ //
 const SiteInformation = (): JSX.Element => {
@@ -66,7 +66,7 @@ const sidebar = {
 	title: 'About',
 	description: 'Cyient Design Led Manufacturing (DLM) strives to give back to society through Cyient Foundation with a focus on local communities through a series of Corporate Social Responsibility (CSR) initiatives on well-being, education, sustainable development, and the environment.',
 	archives: [
-		{title: 'Read all our posts', url: '/archive'},
+		{title: 'Read all our posts', url: GetServerUrl + '/archive'},
 	],
 	social: [
 		{name: 'GitHub', icon: GitHubIcon, url: 'https://github.com/c4gteam5/C4G'},

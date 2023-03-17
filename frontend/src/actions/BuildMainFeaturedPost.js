@@ -27,7 +27,7 @@ import logo from '../static/media/pictures/CyientP5Logo.png';
 
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';
-const getPostsURL = GetServerUrl + "blog/getall";
+const getPostsURL = GetServerUrl + "api/blog/getall";
 // const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
 
 
