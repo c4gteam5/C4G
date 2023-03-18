@@ -12,8 +12,7 @@ const PostForm = () => {
     const [postState, postDispatch] = usePosts();
 
     const { current } = postState;
-    const initialPostValue = current !== null ? current : initialPost;
-    const [post, setPost] = useState(initialPostValue);
+    const [post, setPost] = useState(initialPost);
 
     useEffect(() => {
         if (current !== null) {
@@ -28,7 +27,7 @@ const PostForm = () => {
     const onChange = (e) => setPost({ ...post, [e.target.name]: e.target.value });
     const onSubmit = async (e) => {
         e.preventDefault();
-        if (current === undefined) {
+        if (current === null) {
             await addPost(post, postDispatch);
             setPost(initialPost);
         }
