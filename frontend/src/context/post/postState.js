@@ -2,7 +2,7 @@ import React, { useReducer, useContext } from 'react';
 import axios from 'axios';
 import PostContext from "./postContext";
 import postReducer from "./postReducer";
-import {ADD_POST, GET_POSTS, POST_ERROR} from "../types";
+import {ADD_POST, CLEAR_CURRENT_POST, DELETE_POST, GET_POSTS, POST_ERROR, SET_CURRENT_POST} from "../types";
 
 export const usePosts = () => {
     const { state, dispatch } = useContext(PostContext);
@@ -37,6 +37,31 @@ export const addPost = async (post, dispatch) => {
             payload: err.response.msg
         });
     }
+};
+
+// Delete Post
+export const deletePost = async (dispatch, id) => {
+    try {
+        await axios.delete(`/api/blog/${id}`);
+
+        dispatch({
+            type: DELETE_POST,
+            payload: id
+        });
+    } catch (err) {
+        dispatch({
+            type: POST_ERROR,
+            payload: err.response.msg
+        });
+    }
+};
+
+export const setCurrentPost = (dispatch, post) => {
+    dispatch({ type: SET_CURRENT_POST, payload: post });
+};
+
+export const clearCurrentPost = (dispatch) => {
+    dispatch({ type: CLEAR_CURRENT_POST });
 };
 
 const PostState = (props) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { usePosts } from '../../context/post/postState';
+import {clearCurrentPost, deletePost, usePosts} from '../../context/post/postState';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -9,12 +9,13 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 const PostItem = ({ post }) => {
-    const contactDispatch = usePosts()[1];
+    const postDispatch = usePosts()[1];
 
     const { _id, title, content, linkToPicture, createdAt } = post;
 
     const onDelete = () => {
-        console.log('delete post');
+        deletePost(postDispatch, _id);
+        clearCurrentPost(postDispatch);
     };
 
     return (

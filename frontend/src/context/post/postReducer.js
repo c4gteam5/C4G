@@ -1,7 +1,7 @@
 import {
     GET_POSTS,
     ADD_POST,
-    POST_ERROR
+    POST_ERROR, SET_CURRENT_POST, CLEAR_CURRENT_POST, DELETE_POST
 } from "../types";
 
 const postReducer = (state, action) => {
@@ -15,6 +15,23 @@ const postReducer = (state, action) => {
             return {
                 ...state,
                 posts: [action.payload.post, ...state.posts]
+            };
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(
+                    (post) => post._id !== action.payload
+                )
+            };
+        case SET_CURRENT_POST:
+            return {
+                ...state,
+                current: action.payload
+            };
+        case CLEAR_CURRENT_POST:
+            return {
+                ...state,
+                current: null
             };
         case POST_ERROR:
             return {
