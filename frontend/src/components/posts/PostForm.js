@@ -1,4 +1,4 @@
-import {addPost, usePosts} from "../../context/post/postState";
+import {addPost, clearCurrentPost, updatePost, usePosts} from "../../context/post/postState";
 import React, { useState, useEffect } from 'react';
 
 const initialPost = {
@@ -22,21 +22,25 @@ const PostForm = () => {
         }
     }, [current]);
 
-    const { title = "", content = "", linkToPicture = "", createdAt = Date.now() } = post || {};
+    const { title, content, linkToPicture, createdAt = Date.now() } = post;
 
     const onChange = (e) => setPost({ ...post, [e.target.name]: e.target.value });
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         if (current === null) {
-            await addPost(post, postDispatch);
-            setPost(initialPost);
+            addPost(post, postDispatch).then(() =>
+                setPost(initialPost)
+            );
+        } else {
+            updatePost(postDispatch, post);
         }
+        clearCurrentPost(postDispatch);
     };
 
     return (
         <form onSubmit={onSubmit}>
             <h2 className='text-primary'>
-                New Post
+                {current ? 'Edit' : 'Create'}
             </h2>
             <input
                 type='text'
@@ -55,7 +59,7 @@ const PostForm = () => {
             <div>
                 <input
                     type='submit'
-                    value={'Create'}
+                    value={current ? 'Update Post' : 'Add Post'}
                     className='btn btn-primary btn-block'
                 />
             </div>

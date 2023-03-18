@@ -10,6 +10,9 @@ const Posts = () => {
         getPosts(postDispatch);
     }, [postDispatch]);
 
+    if (posts !== null && posts.length === 0) {
+        return <h4>Please add a posts</h4>;
+    }
     return (
         <Fragment>
             <h2>All previous posts</h2>

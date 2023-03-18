@@ -1,7 +1,7 @@
 import {
     GET_POSTS,
     ADD_POST,
-    POST_ERROR, SET_CURRENT_POST, CLEAR_CURRENT_POST, DELETE_POST
+    POST_ERROR, SET_CURRENT_POST, CLEAR_CURRENT_POST, DELETE_POST, UPDATE_POST
 } from "../types";
 
 const postReducer = (state, action) => {
@@ -21,6 +21,13 @@ const postReducer = (state, action) => {
                 ...state,
                 posts: state.posts.filter(
                     (post) => post._id !== action.payload
+                )
+            };
+        case UPDATE_POST:
+            return {
+                ...state,
+                posts: state.posts.map((post) =>
+                    post._id === action.payload.post._id ? action.payload.post : post
                 )
             };
         case SET_CURRENT_POST:

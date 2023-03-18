@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {clearCurrentPost, deletePost, usePosts} from '../../context/post/postState';
+import {clearCurrentPost, deletePost, usePosts, setCurrentPost} from '../../context/post/postState';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -29,7 +29,7 @@ const PostItem = ({ post }) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" variant="contained" color="primary" onClick={() => onDelete}>
+                <Button size="small" variant="contained" color="primary" onClick={() => setCurrentPost(postDispatch, post)}>
                     Edit
                 </Button>
                 <Box ml={1}>

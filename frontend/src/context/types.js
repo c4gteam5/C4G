@@ -3,6 +3,8 @@ export const ADD_POST = 'ADD_POST';
 
 export const POST_ERROR = 'POST_ERROR';
 
+export const UPDATE_POST = "UPDATE_POST";
+
 export const SET_CURRENT_POST = 'SET_CURRENT_POST';
 
 export const CLEAR_CURRENT_POST = 'CLEAR_CURRENT_POST';
