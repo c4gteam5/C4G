@@ -19,7 +19,7 @@ function Header(props) {
 		<Toolbar sx={{ borderBottom: 1, borderColor: 'divider'}}>
 			<Button component={RouterLink} to="/volunteer-sign-up" size="small">Subscribe</Button>
 			<Button component={RouterLink} to="/read-blog-post" size="small">Read Blog Post</Button>
-			<Typography component="h2" variant="h5" color="inherit" align="center" noWrap sx={{ flex: 1 }}>
+			<Typography component={RouterLink} to="/" variant="h5" color="inherit" align="center" noWrap sx={{ flex: 1 }}>
 				{title}
 			</Typography>
 			{/*search Icon Here*/}

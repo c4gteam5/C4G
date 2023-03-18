@@ -31,11 +31,11 @@ import siteInfo1 from '../static/media/site-info/site-info1.md';
 import siteInfo2 from '../static/media/site-info/site-info2.md';
 import siteInfo3 from '../static/media/site-info/site-info3.md';
 
-import logo from '../static/media/pictures/CyientP5Logo.png';
+import logo from '../static/media/pictures/CyientP5Logo.webp';
 
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';
-const getPostsURL = GetServerUrl + "blog/getall";
+const getPostsURL = GetServerUrl + "api/blog/getall";
 
 
 const sidebar = {

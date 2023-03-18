@@ -23,11 +23,11 @@ import {Link as RouterLink } from "react-router-dom";
 // ~~~ Pages ~~~ //
 import MainFeaturedPost from '../components/MainFeaturedPost';
 
-import logo from '../static/media/pictures/CyientP5Logo.png';
+import logo from '../static/media/pictures/CyientP5Logo.webp';
 
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';
-const getPostsURL = GetServerUrl + "blog/getall";
+const getPostsURL = GetServerUrl + "api/blog/getall";
 // const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
 
 

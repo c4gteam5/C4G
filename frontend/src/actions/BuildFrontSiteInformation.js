@@ -25,13 +25,13 @@ import {Link as RouterLink } from "react-router-dom";
 // ~~~ Pages ~~~ //
 import FeaturedPost from '../components/FeaturedPost';
 
-import logo from '../static/media/pictures/CyientP5Logo.png';
-import image1 from '../static/media/pictures/CyientRobot1.png';
-import image2 from '../static/media/pictures/CyientRobot2.png';
+import logo from '../static/media/pictures/CyientP5Logo.webp';
+import image1 from '../static/media/pictures/CyientRobot1.webp';
+import image2 from '../static/media/pictures/CyientRobot2.webp';
 
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';
-const getPostsURL = GetServerUrl + "blog/getall";
+const getPostsURL = GetServerUrl + "api/blog/getall";
 
 
 function BuildFrontSiteInformation() {
@@ -107,12 +107,12 @@ function BuildFrontSiteInformation() {
 		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
 			<Divider />
 			<ReactMarkdown children={siteText1} />
-			<Link variant="subtitle1" href={targetURL1}>
+			<Link variant="subtitle1" component={RouterLink} to={targetURL1}>
 				Continue Reading...
 			</Link>
 			<Divider />
 			<ReactMarkdown children={siteText2} />
-			<Link variant="subtitle1" href={targetURL2}>
+			<Link variant="subtitle1" component={RouterLink} to={targetURL2}>
 				Continue Reading...
 			</Link>
 		</Grid>

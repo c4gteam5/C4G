@@ -29,34 +29,12 @@ import BuildFrontSiteInformation from '../actions/BuildFrontSiteInformation';
 import siteInfo1 from '../static/media/site-info/site-info1.md';
 import siteInfo2 from '../static/media/site-info/site-info2.md';
 
-import logo from '../static/media/pictures/CyientP5Logo.png';
+import logo from '../static/media/pictures/CyientP5Logo.webp';
 
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';
-const getPostsURL = GetServerUrl + "blog/getall";
+const getPostsURL = GetServerUrl + "api/blog/getall";
 
-// ~~~ Capture Markdown Information to JSX ~~~ //
-const SiteInformation = (): JSX.Element => {
-	const [siteText1, setSiteText1] = useState('')
-	const [siteText2, setSiteText2] = useState('')
-	
-	useEffect(() => {
-		fetch(siteInfo1).then(res => res.text()).then(text => setSiteText1(text))
-	})
-	
-	useEffect(() => {
-		fetch(siteInfo2).then(res => res.text()).then(text => setSiteText2(text))
-	})
-
-	return (
-		<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
-			<Divider />
-			<ReactMarkdown children={siteText1} />
-			<Divider />
-			<ReactMarkdown children={siteText2} />
-		</Grid>
-	)
-}
 
 const sections = [
 	{title: 'Parent Organization', url: 'https://www.cyient.com/'}
