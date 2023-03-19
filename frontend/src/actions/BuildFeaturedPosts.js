@@ -48,7 +48,7 @@ function BuildFeaturedPosts () {
 			description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
 			image: 'https://source.unsplash.com/random',
 			imageLabel: 'Image Text',
-			id: '0',
+			id: '1',
 		},
 	];
 
@@ -74,8 +74,14 @@ function BuildFeaturedPosts () {
 		// console.log(blogPosts.length)
 		// console.log(blogPosts)
 
-		blogImage1 = blogPosts[length - 2].linkToPicture
-		blogImage2 = blogPosts[length - 3].linkToPicture
+
+		// blogImage1 = blogPosts[length - 2].linkToPicture
+		// blogImage2 = blogPosts[length - 3].linkToPicture
+
+		// because backend blog pull was reversed
+		blogImage1 = blogPosts[1].linkToPicture
+		blogImage2 = blogPosts[2].linkToPicture
+
 		if (blogImage1 === '' || blogImage1 === undefined) {
 			blogImage1 = image1
 			// console.log('image variable is undefined or null');
@@ -87,20 +93,37 @@ function BuildFeaturedPosts () {
 
 		featuredPosts = [
 			{
-				title: blogPosts[length - 2].title,
+				// title: blogPosts[length - 2].title,
+				// date: 'Feb 20',
+				// description: blogPosts[length - 2].content,
+				// image: blogImage1,
+				// imageLabel: blogImage1,
+				// id: blogPosts[length - 2]._id,
+
+				// because backend blog pull was reversed
+				title: blogPosts[1].title,
 				date: 'Feb 20',
-				description: blogPosts[length - 2].content,
+				description: blogPosts[1].content,
 				image: blogImage1,
 				imageLabel: blogImage1,
-				id: blogPosts[length - 2]._id,
+				id: blogPosts[1]._id,
+
 			},
 			{
-				title: blogPosts[length - 3].title,
-				date: 'Feb 21',
-				description: blogPosts[length - 3].content,
-				image: blogImage2,
-				imageLabel: blogImage2,
-				id: blogPosts[length - 3]._id,
+				// title: blogPosts[length - 3].title,
+				// date: 'Feb 21',
+				// description: blogPosts[length - 3].content,
+				// image: blogImage2,
+				// imageLabel: blogImage2,
+				// id: blogPosts[length - 3]._id,
+
+				// because backend blog pull was reversed
+				title: blogPosts[2].title,
+				date: 'Feb 20',
+				description: blogPosts[2].content,
+				image: blogImage1,
+				imageLabel: blogImage1,
+				id: blogPosts[2]._id,
 			},
 		];
 	}
@@ -113,12 +136,20 @@ function BuildFeaturedPosts () {
 		}
 
 		featuredPosts = {
-			title: blogPosts[length - 2].title,
-			date: 'Feb 20',
-			description: blogPosts[length - 2].content,
-			image: blogImage1,
-			imageLabel: blogImage1,
-			id: blogPosts[length - 2]._id,
+			// title: blogPosts[length - 2].title,
+			// date: 'Feb 20',
+			// description: blogPosts[length - 2].content,
+			// image: blogImage1,
+			// imageLabel: blogImage1,
+			// id: blogPosts[length - 2]._id,
+
+			// because backend blog pull was reversed
+				title: blogPosts[1].title,
+				date: 'Feb 20',
+				description: blogPosts[1].content,
+				image: blogImage1,
+				imageLabel: blogImage1,
+				id: blogPosts[1]._id,
 		};
 	}
 

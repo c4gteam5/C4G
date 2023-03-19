@@ -118,8 +118,8 @@ export default function ReadBlog() {
 				<Header title="Cyient Foundation - P5" sections={sections} />
 				<main>
 					{/*Featured posts and other posts here*/}
-					<BuildMainFeaturedPost />
-					<BuildFeaturedPosts />
+					{/** <BuildMainFeaturedPost />
+					 <BuildFeaturedPosts /> **/}
 					<Grid container spacing={5} sx={{ mt: 3 }}>
 						<Grid item xs={12} md={8} sx={{'& .markdown': {py: 3,},}}>
 							<Divider />
