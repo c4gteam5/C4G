@@ -5,6 +5,8 @@ export const GET_VOLUNTEERS = 'GET_VOLUNTEERS';
 
 export const SEARCH_VOLUNTEER = 'SEARCH_VOLUNTEER';
 
+export const CLEAR_VOLUNTEER = 'CLEAR_VOLUNTEER';
+
 export const POST_ERROR = 'POST_ERROR';
 
 export const UPDATE_POST = "UPDATE_POST";

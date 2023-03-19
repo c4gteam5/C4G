@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_POSTS, GET_VOLUNTEERS, POST_ERROR} from "../types";
+import {CLEAR_VOLUNTEER, GET_POSTS, GET_VOLUNTEERS, POST_ERROR, SEARCH_VOLUNTEER} from "../types";
 import React, {useContext, useReducer} from "react";
 import PostContext from "../post/postContext";
 import VolunteerContext from "./volunteerContext";
@@ -13,7 +13,6 @@ export const useVolunteers = () => {
 export const getVolunteers = async (dispatch) => {
     try {
         const res = await axios.get("/api/volunteers/getall");
-        console.log(res);
         dispatch({
             type: GET_VOLUNTEERS,
             payload: res.data.volunteers
@@ -26,9 +25,18 @@ export const getVolunteers = async (dispatch) => {
     }
 };
 
+export const searchVolunteer = (dispatch, text) => {
+    dispatch({ type: SEARCH_VOLUNTEER, payload: text });
+};
+
+export const clearVolunteer = (dispatch) => {
+    dispatch({ type: CLEAR_VOLUNTEER });
+};
+
 const VolunteerState = (props) => {
     const initialState = {
         volunteers: [],
+        filtered: null,
         error: null
     };
 

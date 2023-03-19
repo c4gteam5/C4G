@@ -4,7 +4,7 @@ import VolunteerItem from "./VolunteerItem";
 
 const Volunteers = () => {
     const [volunteerState, volunteerDispatch] = useVolunteers();
-    const { volunteers } = volunteerState;
+    const { volunteers, filtered} = volunteerState;
     useEffect(() => {
         getVolunteers(volunteerDispatch);
     }, [volunteerDispatch]);
@@ -14,10 +14,15 @@ const Volunteers = () => {
     }
     return (
         <Fragment>
-            <h2>Volunteers</h2>
-            {volunteers.map((volunteer) => (
-                <VolunteerItem key={volunteer._id} volunteer={volunteer} />
-            ))}
+            <h1>Volunteers</h1>
+                    {filtered !== null
+                        ? filtered.map((volunteer) => (
+                            <VolunteerItem key={volunteer._id} volunteer={volunteer} />
+                        ))
+                        : volunteers.map((volunteer) => (
+                            <VolunteerItem key={volunteer._id} volunteer={volunteer} />
+                        )
+            )}
         </Fragment>
     );
 }

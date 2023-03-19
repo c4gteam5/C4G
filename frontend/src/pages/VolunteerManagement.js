@@ -2,6 +2,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import * as React from "react";
 import Volunteers from "../components/volunteers/Volunteers";
+import VolunteerSearch from "../components/volunteers/VolunteerSearch";
 
 const VolunteerManagement = () => {
     return (
@@ -14,9 +15,9 @@ const VolunteerManagement = () => {
             pt={5}
             pb={5}
         >
-            <Typography variant="h2" component="h1" gutterBottom>
-                Volunteer Management Portal
-            </Typography>
+            <Box width="100%" maxWidth={800} mt={4}>
+                <VolunteerSearch />
+            </Box>
             <Box width="100%" maxWidth={800} mt={4}>
                 <Volunteers />
             </Box>

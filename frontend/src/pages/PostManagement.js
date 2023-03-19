@@ -17,9 +17,6 @@ const PostManagement = () => {
             pt={5}
             pb={5}
             >
-            <Typography variant="h2" component="h1" gutterBottom>
-                Post Management Portal
-            </Typography>
             <Box width="100%" maxWidth={800} mt={4}>
                 <Paper elevation={3} sx={{ padding: 4 }}>
                     <PostForm />
