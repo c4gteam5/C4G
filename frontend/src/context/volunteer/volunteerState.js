@@ -5,6 +5,7 @@ import PostContext from "../post/postContext";
 import VolunteerContext from "./volunteerContext";
 import postReducer from "../post/postReducer";
 import volunteerReducer from "./volunteerReducer";
+import getBaseURL from "../../components/utils/GetServerUrl";
 
 export const useVolunteers = () => {
     const { state, dispatch } = useContext(VolunteerContext);
@@ -12,7 +13,7 @@ export const useVolunteers = () => {
 };
 export const getVolunteers = async (dispatch) => {
     try {
-        const res = await axios.get("/api/volunteers/getall");
+        const res = await axios.get(getBaseURL + "api/volunteers/getall");
         dispatch({
             type: GET_VOLUNTEERS,
             payload: res.data.volunteers
