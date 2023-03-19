@@ -40,7 +40,7 @@ const PostForm = () => {
     return (
         <form onSubmit={onSubmit}>
             <h2 className='text-primary'>
-                {current ? 'Edit' : 'Create'}
+                {current ? 'Edit' : 'Create Post'}
             </h2>
             <input
                 type='text'
@@ -59,7 +59,7 @@ const PostForm = () => {
             <div>
                 <input
                     type='submit'
-                    value={current ? 'Update Post' : 'Add Post'}
+                    value={current ? 'Update Post' : 'Create Post'}
                     className='btn btn-primary btn-block'
                 />
             </div>

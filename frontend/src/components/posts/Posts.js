@@ -1,6 +1,5 @@
 import { getPosts, usePosts } from "../../context/post/postState";
 import React, { useEffect, Fragment } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PostItem from "./PostItem";
 
 const Posts = () => {
@@ -11,22 +10,14 @@ const Posts = () => {
     }, [postDispatch]);
 
     if (posts !== null && posts.length === 0) {
-        return <h4>Please add a posts</h4>;
+        return <h4>Please add a post</h4>;
     }
     return (
         <Fragment>
-            <h2>All previous posts</h2>
-                <TransitionGroup>
-                    {posts.map((post) => (
-                    <CSSTransition
-                        key={post._id}
-                        timeout={500}
-                        classNames='item'
-                    >
-                        <PostItem post={post} />
-                    </CSSTransition>
-                    ))}
-                </TransitionGroup>
+            <h2>Previous posts</h2>
+            {posts.map((post) => (
+                <PostItem key={post._id} post={post} />
+            ))}
         </Fragment>
     );
 }

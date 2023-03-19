@@ -46,7 +46,7 @@ const postReducer = (state, action) => {
                 error: action.payload
             };
         default:
-            throw new Error(`Unsupported type of: ${action.type}`);
+            throw new Error(`Action error: ${action}`);
     }
 }
 
