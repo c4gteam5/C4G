@@ -1,4 +1,7 @@
-import {clearVolunteer, searchVolunteer, useVolunteers} from "../../context/volunteer/volunteerState";
+import React from 'react';
+import { clearVolunteer, searchVolunteer, useVolunteers } from '../../context/volunteer/volunteerState';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 const VolunteerSearch = () => {
     const volunteerDispatch = useVolunteers()[1];
@@ -12,9 +15,24 @@ const VolunteerSearch = () => {
     };
 
     return (
-        <form onSubmit={(e) => e.preventDefault()}>
-            <input type='text' placeholder='Search by first name...' onChange={onChange} />
-        </form>
+        <Box
+            component="form"
+            onSubmit={(e) => e.preventDefault()}
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginBottom: '20px',
+            }}
+        >
+            <TextField
+                variant="outlined"
+                placeholder="Search by name/profession/interest/phone..."
+                onChange={onChange}
+                sx={{
+                    width: '50%',
+                }}
+            />
+        </Box>
     );
 };
 

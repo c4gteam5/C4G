@@ -12,9 +12,9 @@ const volunteerReducer = (state, action) => {
                 ...state,
                 filtered: action.payload === undefined
                     ? state.volunteers
-                    : state.volunteers.filter(({ firstName }) => {
-                        const testString = `${firstName}`.toLowerCase();
-                        return testString.includes(action.payload.toLowerCase());
+                    : state.volunteers.filter(({ lastName, profession, interest, email, phoneNumber }) => {
+                        const searchString = `${lastName}${profession}${interest}${email}${phoneNumber}`.toLowerCase();
+                        return searchString.includes(action.payload.toLowerCase());
                     })
             };
         case CLEAR_VOLUNTEER:
