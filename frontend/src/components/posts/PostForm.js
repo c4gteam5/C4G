@@ -1,18 +1,27 @@
-import {addPost, usePosts} from "../../context/post/postState";
+import {
+    addPost,
+    clearCurrentPost,
+    updatePost,
+    usePosts,
+} from '../../context/post/postState';
 import React, { useState, useEffect } from 'react';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const initialPost = {
-    title: "",
-    content: "",
-    linkToPicture: "",
+    title: '',
+    content: '',
+    linkToPicture: '',
+    createdAt: Date.now(),
 };
 
 const PostForm = () => {
     const [postState, postDispatch] = usePosts();
 
     const { current } = postState;
-    const initialPostValue = current !== null ? current : initialPost;
-    const [post, setPost] = useState(initialPostValue);
+    const [post, setPost] = useState(initialPost);
 
     useEffect(() => {
         if (current !== null) {
@@ -22,53 +31,62 @@ const PostForm = () => {
         }
     }, [current]);
 
-    const { title, content, linkToPicture, createdAt } = post || {};
+    const { title, content, linkToPicture, createdAt = Date.now() } = post;
 
-    const onChange = (e) => setPost({ ...post, [e.target.name]: e.target.value });
+    const onChange = (e) =>
+        setPost({ ...post, [e.target.name]: e.target.value });
     const onSubmit = (e) => {
         e.preventDefault();
-        if (current === undefined) {
-            addPost(postDispatch, post).then(() => {
-                    setPost(initialPost);
-            }
-            );
+        if (current === null) {
+            addPost(post, postDispatch).then(() => setPost(initialPost));
+        } else {
+            updatePost(postDispatch, post);
         }
+        clearCurrentPost(postDispatch);
     };
 
     return (
-        <form onSubmit={onSubmit}>
-            <h2 className='text-primary'>
-                {current ? 'Edit Contact' : 'Add Contact'}
-            </h2>
-            <input
-                type='text'
-                placeholder='Title'
-                name='title'
+        <Box
+            component="form"
+            onSubmit={onSubmit}
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '20px',
+            }}
+        >
+            <Typography variant="h5" component="h2">
+                {current ? 'Edit' : 'Create'} Post
+            </Typography>
+            <TextField
+                variant="outlined"
+                placeholder="Title"
+                name="title"
                 value={title}
                 onChange={onChange}
+                fullWidth
             />
-            <input
-                type='text'
-                placeholder='Content'
-                name='content'
+            <TextField
+                variant="outlined"
+                placeholder="Content"
+                name="content"
                 value={content}
                 onChange={onChange}
+                fullWidth
+                multiline
+                minRows={4}
             />
-            <input
-                type='text'
-                placeholder='link To Image'
-                name='linkToPicture'
-                value={linkToPicture}
-                onChange={onChange}
-            />
-            <div>
-                <input
-                    type='submit'
-                    value={current ? 'Update Contact' : 'Add Contact'}
-                    className='btn btn-primary btn-block'
-                />
-            </div>
-        </form>
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+            >
+                {current ? 'Update Post' : 'Create Post'}
+            </Button>
+        </Box>
     );
 };
 
