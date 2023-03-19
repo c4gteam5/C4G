@@ -70,7 +70,7 @@ function BuildMainFeaturedPost () {
 			blogImage = logo
 			// console.log('image variable is undefined or null');
 		}
-
+		
 		mainFeaturedPost = {
 			// because backend blog pull was reversed
 			// title: blogPosts[length - 1].title,
@@ -81,7 +81,7 @@ function BuildMainFeaturedPost () {
 			// id: blogPosts[length - 1]._id,
 
 			title: blogPosts[0].title,
-			description: blogPosts[0].content,
+			description: blogPosts[0].content.split('\n', 1).toString(),
 			image: blogImage,
 			imageText: blogImage,
 			linkText: 'Continue reading…',

@@ -72,7 +72,8 @@ function BuildArchiveSiteInformation() {
 		if ( (blogPosts[i].content == undefined || blogPosts[i].content == null || blogPosts[i].content == '') ) {
 			blogBody.push('Empty Body') }
 		else {
-			blogBody.push(blogPosts[i].content)
+			blogBody.push(blogPosts[i].content.split('\n', 1).toString())
+
 		}
 
 		if ( (blogPosts[i].linkToPicture == undefined || blogPosts[i].linkToPicture == null || blogPosts[i].linkToPicture == '') ) {
@@ -86,8 +87,6 @@ function BuildArchiveSiteInformation() {
 		else {
 			blogURL.push(targetURL + blogPosts[i]._id)
 		}
-
-
 	}
 
 	// And then we need to build the markdown return

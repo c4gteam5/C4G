@@ -103,7 +103,7 @@ function BuildFeaturedPosts () {
 				// because backend blog pull was reversed
 				title: blogPosts[1].title,
 				date: 'Feb 20',
-				description: blogPosts[1].content,
+				description: blogPosts[1].content.split('\n', 1).toString(),
 				image: blogImage1,
 				imageLabel: blogImage1,
 				id: blogPosts[1]._id,
@@ -120,16 +120,16 @@ function BuildFeaturedPosts () {
 				// because backend blog pull was reversed
 				title: blogPosts[2].title,
 				date: 'Feb 20',
-				description: blogPosts[2].content,
-				image: blogImage1,
-				imageLabel: blogImage1,
+				description: blogPosts[2].content.split('\n', 1).toString(),
+				image: blogImage2,
+				imageLabel: blogImage2,
 				id: blogPosts[2]._id,
 			},
 		];
 	}
 	else if (length > 1 && length < 2) {
 
-		blogImage1 = blogPosts[length - 2].linkToPicture
+		blogImage1 = blogPosts[1].linkToPicture
 		if (blogImage1 === '' || blogImage1 === undefined) {
 			blogImage1 = image1
 			// console.log('image variable is undefined or null');
@@ -146,7 +146,7 @@ function BuildFeaturedPosts () {
 			// because backend blog pull was reversed
 				title: blogPosts[1].title,
 				date: 'Feb 20',
-				description: blogPosts[1].content,
+				description: blogPosts[1].content.split('\n', 1).toString(),
 				image: blogImage1,
 				imageLabel: blogImage1,
 				id: blogPosts[1]._id,
