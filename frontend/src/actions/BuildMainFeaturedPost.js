@@ -28,7 +28,6 @@ import logo from '../static/media/pictures/CyientP5Logo.webp';
 // ~~~ Blog Posts Assets ~~~ //
 import GetServerUrl from '../components/utils/GetServerUrl';
 const getPostsURL = GetServerUrl + "api/blog/getall";
-// const baseURL = "https://c4g-backend-2.onrender.com/api/blog/getall";
 
 
 
@@ -63,7 +62,9 @@ function BuildMainFeaturedPost () {
 	if (length > 0) {
 		// console.log(blogPosts.length)
 		// console.log(blogPosts)
-		blogImage = blogPosts[length - 1].linkToPicture
+
+		// blogImage = blogPosts[length - 1].linkToPicture	
+		blogImage = blogPosts[0].linkToPicture		// because backend blog pull was reversed
 
 		if (blogImage === '' || blogImage === undefined) {
 			blogImage = logo
@@ -71,17 +72,25 @@ function BuildMainFeaturedPost () {
 		}
 
 		mainFeaturedPost = {
-			title: blogPosts[length - 1].title,
-			description: blogPosts[length - 1].content,
+			// because backend blog pull was reversed
+			// title: blogPosts[length - 1].title,
+			// description: blogPosts[length - 1].content,
+			// image: blogImage,
+			// imageText: blogImage,
+			// linkText: 'Continue reading…',
+			// id: blogPosts[length - 1]._id,
+
+			title: blogPosts[0].title,
+			description: blogPosts[0].content,
 			image: blogImage,
 			imageText: blogImage,
 			linkText: 'Continue reading…',
-			id: blogPosts[length - 1]._id,
+			id: blogPosts[0]._id,
 		};
 	}
 
 	return (
-		<MainFeaturedPost post={mainFeaturedPost} />
+		<MainFeaturedPost key={mainFeaturedPost.id} post={mainFeaturedPost} />
 	)
 }
 

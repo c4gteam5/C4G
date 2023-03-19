@@ -17,7 +17,7 @@ function FeaturedPost(props) {
 	let targetURL = "/read-blog-post" + "?id=" + post.id
 	return (
 		<Grid item xs={12} md={6}>
-			<CardActionArea component={RouterLink} to={targetURL}>
+			<CardActionArea component={RouterLink} to={targetURL} key={targetURL}>
 				<Card sx={{ display: 'flex' }}>
 					<CardContent sx={{ flex: 1 }}>
 						<Typography component="h2" variant="h5">

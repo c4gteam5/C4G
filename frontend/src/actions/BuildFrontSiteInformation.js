@@ -61,8 +61,13 @@ function BuildFrontSiteInformation() {
 
 	if (length > 4) {
 
-		blogImage1 = blogPosts[length - 4].linkToPicture
-		blogImage2 = blogPosts[length - 5].linkToPicture
+		// blogImage1 = blogPosts[length - 4].linkToPicture
+		// blogImage2 = blogPosts[length - 5].linkToPicture
+
+		// because backend blog pull was reversed
+		blogImage1 = blogPosts[3].linkToPicture
+		blogImage2 = blogPosts[4].linkToPicture
+
 		if (blogImage1 === '' || blogImage1 === undefined) {
 			blogImage1 = image1
 			// console.log('image variable is undefined or null');
@@ -72,8 +77,13 @@ function BuildFrontSiteInformation() {
 			// console.log('image variable is undefined or null');
 		}
 
-		siteText1 = "# " + blogPosts[length - 4].title + "\n\n" + blogPosts[length - 4].content
-		siteText2 = "# " + blogPosts[length - 5].title + "\n\n" + blogPosts[length - 5].content
+		// siteText1 = "# " + blogPosts[length - 4].title + "\n\n" + blogPosts[length - 4].content
+		// siteText2 = "# " + blogPosts[length - 5].title + "\n\n" + blogPosts[length - 5].content
+
+		// because backend blog pull was reversed
+		siteText1 = "# " + blogPosts[3].title + "\n\n" + blogPosts[3].content
+		siteText2 = "# " + blogPosts[4].title + "\n\n" + blogPosts[4].content
+
 		if (siteText1.length > 269) {
 			siteText1 = siteText1.substring(0, 269)
 			siteText1 = siteText1 + "..."
@@ -83,24 +93,37 @@ function BuildFrontSiteInformation() {
 			siteText2 = siteText2 + "..."
 		}
 
-		targetURL1 = targetURL1 + blogPosts[length - 4]._id
-		targetURL2 = targetURL2 + blogPosts[length - 5]._id
+		// targetURL1 = targetURL1 + blogPosts[length - 4]._id
+		// targetURL2 = targetURL2 + blogPosts[length - 5]._id
+
+		// because backend blog pull was reversed
+		targetURL1 = targetURL1 + blogPosts[3]._id
+		targetURL2 = targetURL2 + blogPosts[4]._id
 	}
 	else if (length > 3 && length < 5) {
 
-		blogImage1 = blogPosts[length - 4].linkToPicture
+		// blogImage1 = blogPosts[length - 4].linkToPicture
+		// because backend blog pull was reversed
+		blogImage1 = blogPosts[3].linkToPicture
+
 		if (blogImage1 === '' || blogImage1 === undefined) {
 			blogImage1 = image1
 			// console.log('image variable is undefined or null');
 		}
 
-		siteText1 = "# " + blogPosts[length - 4].title + "\n\n" + blogPosts[length - 4].content
+		// siteText1 = "# " + blogPosts[length - 4].title + "\n\n" + blogPosts[length - 4].content
+
+		// because backend blog pull was reversed
+		siteText1 = "# " + blogPosts[3].title + "\n\n" + blogPosts[3].content
 		if (siteText1.length > 269) {
 			siteText1 = siteText1.substring(0, 269)
 			siteText1 = siteText1 + "..."
 		}
 
-		targetURL1 = targetURL1 + blogPosts[length - 4]._id
+		// targetURL1 = targetURL1 + blogPosts[length - 4]._id
+
+		// because backend blog pull was reversed
+		targetURL1 = targetURL1 + blogPosts[3]._id
 	}
 
 	return (
@@ -112,7 +135,7 @@ function BuildFrontSiteInformation() {
 			</Link>
 			<Divider />
 			<ReactMarkdown children={siteText2} />
-			<Link variant="subtitle1" component={RouterLink} to={targetURL2}>
+			<Link variant="subtitle1" component={RouterLink} to={targetURL2} key={targetURL2}>
 				Continue Reading...
 			</Link>
 		</Grid>
