@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {clearCurrentPost, deletePost, usePosts, setCurrentPost} from '../../context/post/postState';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -40,10 +39,6 @@ const PostItem = ({ post }) => {
             </CardActions>
         </Card>
     );
-};
-
-PostItem.propTypes = {
-    post: PropTypes.object.isRequired,
 };
 
 export default PostItem;

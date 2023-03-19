@@ -18,6 +18,9 @@ const ManagementHome = () => {
                         <button>Post Manager</button>
                     </Link>
 
+                    <Link to="/volunteer-management">
+                        <button>Volunteer Manager</button>
+                    </Link>
                 </div>
             </Container>
             <Footer
