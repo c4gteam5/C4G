@@ -11,6 +11,7 @@ import {
     SET_CURRENT_POST,
     UPDATE_POST
 } from "../types";
+import getBaseURL from "../../components/utils/GetServerUrl";
 
 export const usePosts = () => {
     const { state, dispatch } = useContext(PostContext);
@@ -19,7 +20,7 @@ export const usePosts = () => {
 
 export const getPosts = async (dispatch) => {
     try {
-        const res = await axios.get("/api/blog/getall");
+        const res = await axios.get(getBaseURL + "api/blog/getall");
         dispatch({
             type: GET_POSTS,
             payload: res.data.posts
@@ -34,7 +35,7 @@ export const getPosts = async (dispatch) => {
 
 export const addPost = async (post, dispatch) => {
     try {
-        const res = await axios.post("/api/blog/create", post);
+        const res = await axios.post(getBaseURL + "api/blog/create", post);
         dispatch({
             type: ADD_POST,
             payload: res.data
@@ -50,7 +51,7 @@ export const addPost = async (post, dispatch) => {
 // Delete Post
 export const deletePost = async (dispatch, id) => {
     try {
-        await axios.delete(`/api/blog/${id}`);
+        await axios.delete(getBaseURL + `api/blog/${id}`);
 
         dispatch({
             type: DELETE_POST,
@@ -66,7 +67,7 @@ export const deletePost = async (dispatch, id) => {
 
 export const updatePost = async (dispatch, post) => {
     try {
-        const res = await axios.patch(`/api/blog/${post._id}`, post);
+        const res = await axios.patch(getBaseURL + `api/blog/${post._id}`, post);
         dispatch({
             type: UPDATE_POST,
             payload: res.data
