@@ -3,6 +3,7 @@ import Paper from "@mui/material/Paper";
 import PostForm from "../components/posts/PostForm";
 import * as React from "react";
 import Posts from "../components/posts/Posts";
+import Footer from "../components/utils/Footer";
 
 const PostManagement = () => {
     return (
@@ -23,7 +24,10 @@ const PostManagement = () => {
                 <Box width="100%" maxWidth={800} mt={4}>
                     <Posts />
                 </Box>
-
+                <Footer
+                    title="Cyient Foundation Management Portal - P5"
+                    description="Cyient (Estd: 1991, NSE: CYIENT) is a global digital engineering and technology company."
+                />
 
             </Box>
     );
