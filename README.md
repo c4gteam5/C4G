@@ -1,3 +1,7 @@
+This website utilizes free templates from Material UI (https://mui.com/). No ownership is expressed, and any source code that utilizes MUI is sourced from their documentation, or modified by this team to work with our source.
+
+---
+
 # How to start frontend
 
 ##### using the terminal, make sure you are in the frontend directory (cd frontend)
