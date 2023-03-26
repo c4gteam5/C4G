@@ -49,7 +49,7 @@ export default function SignIn() {
       navigate("/management-home");
     } else {
       // display an error
-      alert(res);
+      alert(JSON.stringify(res));
     }
   };
 
