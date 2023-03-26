@@ -12,17 +12,17 @@ const signToken = (id) => {
 const createSendToken = (admin, statusCode, res) => {
   const token = signToken(admin._id);
 
-  const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    //following code means we cannot manipulate the cookie
-    httpOnly: true,
-  };
+  // const cookieOptions = {
+  //   expires: new Date(
+  //     Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+  //   ),
+  //   //following code means we cannot manipulate the cookie
+  //   httpOnly: true,
+  // };
 
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
+  //if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
-  res.cookie("jwt", token, cookieOptions);
+  //res.cookie("jwt", token, cookieOptions);
 
   //remove password from output
   admin.password = undefined;
