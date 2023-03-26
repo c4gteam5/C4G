@@ -37,7 +37,6 @@ export default function SignIn() {
       {
         method: "POST",
         headers: {
-          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -60,7 +59,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <h1>TEST 14</h1>
+      <h1>TEST 15</h1>
         <CssBaseline />
         <Box
           sx={{
