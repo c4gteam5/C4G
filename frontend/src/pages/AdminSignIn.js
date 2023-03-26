@@ -39,6 +39,7 @@ export default function SignIn() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           email,password
         }),
@@ -49,14 +50,14 @@ export default function SignIn() {
       navigate("/management-home");
     } else {
       // display an error
-      alert(JSON.stringify(res));
+      alert(JSON.stringify(res.message));
     }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <h1>TEST THREE</h1>
+      <h1>TEST four</h1>
         <CssBaseline />
         <Box
           sx={{
