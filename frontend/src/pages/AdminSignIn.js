@@ -46,7 +46,7 @@ export default function SignIn() {
     );
     if (res.status === 200) {
       // redirect
-      localStorage.setItem('jwt', res.token);
+      localStorage.setItem('jwt', res);
       navigate("/management-home");
     } else {
       // display an error
@@ -58,7 +58,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <h1>TEST 7</h1>
+      <h1>TEST 8</h1>
         <CssBaseline />
         <Box
           sx={{
