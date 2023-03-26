@@ -5,9 +5,7 @@ import Typography from '@mui/material/Typography';
 import {useVolunteers} from "../../context/volunteer/volunteerState";
 
 const VolunteerItem = ({ volunteer }) => {
-    const volunteerDispatch = useVolunteers()[1];
-
-    const { _id, firstName, lastName, email, phoneNumber, profession, interest } = volunteer;
+    const { firstName, lastName, email, phoneNumber, profession, interest } = volunteer;
 
     return (
         <Card sx={{ minWidth: 275, mb: 3 }}>
