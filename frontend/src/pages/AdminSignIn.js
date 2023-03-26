@@ -50,14 +50,14 @@ export default function SignIn() {
       navigate("/management-home");
     } else {
       // display an error
-      alert(JSON.stringify(res.message));
+      alert(res.message);
     }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <h1>TEST four</h1>
+      <h1>TEST 5</h1>
         <CssBaseline />
         <Box
           sx={{
