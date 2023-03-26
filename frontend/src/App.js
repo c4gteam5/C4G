@@ -32,7 +32,7 @@ function App() {
 	[]);
 
 	// ~~~ Handles the routes for page navigation ~~~ //
-	if (apiCall) return (
+	return (
 		<PostState>
 			<VolunteerState>
 			<BrowserRouter>
