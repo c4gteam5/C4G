@@ -32,6 +32,10 @@ app.use(xss());
 //   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 // };
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 dotenv.config({ path: "./config.env" });
 const DB = process.env.DATABASE.replace(
