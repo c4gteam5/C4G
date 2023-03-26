@@ -1,5 +1,5 @@
 ##### This website utilizes free templates from Material UI (https://mui.com/). No ownership is expressed, and any source code that utilizes MUI is sourced from their documentation, or modified by this team to work with our source.
-In addition, part of the code also refers to an online course published by Traversy, B., please refer to the reference list for details.
+##### In addition, part of the code also refers to an online course published by Traversy, B., please refer to the reference list for details.
 ---
 
 # How to start frontend
