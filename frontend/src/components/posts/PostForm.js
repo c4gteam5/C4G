@@ -31,7 +31,7 @@ const PostForm = () => {
         }
     }, [current]);
 
-    const { title, content, linkToPicture, createdAt = Date.now() } = post;
+    const { title, content } = post;
 
     const onChange = (e) =>
         setPost({ ...post, [e.target.name]: e.target.value });
