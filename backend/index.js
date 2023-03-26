@@ -27,11 +27,11 @@ app.use(mongoSanitize());
 //data sanitization against XSS
 app.use(xss());
 
-var corsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-app.use(cors(corsOptions));
+// var corsOptions = {
+//   origin: "*",
+//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
+app.use(cors());
 
 dotenv.config({ path: "./config.env" });
 const DB = process.env.DATABASE.replace(
