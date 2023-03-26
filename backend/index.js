@@ -9,7 +9,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 //parses cookie
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 
 //routes
 const healthCheckRoute = require("./routes/healthCheckRoute");
@@ -32,9 +32,14 @@ app.use(xss());
 //   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 // };
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
+  );
   next();
 });
 
@@ -59,21 +64,19 @@ app.use((req, res, next) => {
   });
 });
 
-
 // API Routes
 app.use("/api", healthCheckRoute);
 app.use("/api/volunteers", volunteerRoutes);
-app.use("/api/admin", adminAuthRoutes)
-app.use('/api/blog', blogPostsRoutes)
-
+app.use("/api/admin", adminAuthRoutes);
+app.use("/api/blog", blogPostsRoutes);
 
 //catch any requests to non-existent API endpoints
 app.use(function (req, res) {
   // Invalid request
   res.status(404).json({
     error: {
-      message: "Invalid Request"
-    }
+      message: "Invalid Request",
+    },
   });
 });
 
