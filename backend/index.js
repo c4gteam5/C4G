@@ -28,8 +28,7 @@ app.use(mongoSanitize());
 app.use(xss());
 
 var corsOptions = {
-  origin: "https://c4g-frontend.onrender.com",
-  credentials: true,
+  origin: "*",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 app.use(cors(corsOptions));
