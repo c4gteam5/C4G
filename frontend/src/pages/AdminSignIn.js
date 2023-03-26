@@ -49,14 +49,14 @@ export default function SignIn() {
       navigate("/management-home");
     } else {
       // display an error
-      alert("something went wrong");
+      alert(res);
     }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <h1>TEST ONE</h1>
+      <h1>TEST TWO</h1>
         <CssBaseline />
         <Box
           sx={{
