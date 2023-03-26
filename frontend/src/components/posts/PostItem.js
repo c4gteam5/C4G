@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 const PostItem = ({ post }) => {
     const postDispatch = usePosts()[1];
 
-    const { _id, title, content, linkToPicture, createdAt } = post;
+    const { _id, title, content } = post;
 
     const onDelete = () => {
         deletePost(postDispatch, _id);
