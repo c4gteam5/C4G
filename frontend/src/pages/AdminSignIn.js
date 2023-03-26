@@ -39,7 +39,6 @@ export default function SignIn() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
         body: JSON.stringify({
           email,password
         }),
@@ -59,7 +58,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <h1>TEST 6</h1>
+      <h1>TEST 7</h1>
         <CssBaseline />
         <Box
           sx={{
