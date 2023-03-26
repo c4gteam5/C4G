@@ -46,6 +46,7 @@ export default function SignIn() {
     );
     if (res.status === 200) {
       // redirect
+      alert(res)
       localStorage.setItem('jwt', res);
       navigate("/management-home");
     } else {
