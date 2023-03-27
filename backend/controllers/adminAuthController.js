@@ -58,6 +58,7 @@ exports.signup = async (req, res) => {
 };
 
 exports.login = async (req, res, next) => {
+  console.log("called login endpoint")
   const { email, password } = req.body;
 
   //1) check if email and password exist
