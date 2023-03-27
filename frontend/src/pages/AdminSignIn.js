@@ -50,7 +50,7 @@ export default function SignIn() {
     if (res.status === 200) {
       // redirect
       console.log(res.json())
-      localStorage.setItem('jwt', "test");
+      localStorage.setItem('jwt', JSON.stringify(res.json()));
       navigate("/management-home");
     } else {
       // display an error
@@ -62,7 +62,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <h1>TEST 2</h1>
+      <h1>TEST 3</h1>
         <CssBaseline />
         <Box
           sx={{
