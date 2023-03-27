@@ -35,29 +35,21 @@ export default function SignIn() {
   const signInAdmin = async ({ email, password }, e) => {
     e.preventDefault();
 
-    // const res = await fetch(
-    //   "https://c4g-backend-2.onrender.com/api/admin/login",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email,password
-    //     }),
-    //   }
-    // );
+  
 
     try {
-      const { token } = await axios.post(
-        "https://c4g-backend-2.onrender.com/api/admin/login",
-        { email, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const {token} = await fetch(
+      "https://c4g-backend-2.onrender.com/api/admin/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,password
+        }),
+      }
+    );
 
       if (token) {
         // redirect
