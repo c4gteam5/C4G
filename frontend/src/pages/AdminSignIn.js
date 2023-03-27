@@ -35,25 +35,33 @@ export default function SignIn() {
   const signInAdmin = async ({ email, password }, e) => {
     e.preventDefault();
 
-  
+    // const res = await fetch(
+    //   "https://c4g-backend-2.onrender.com/api/admin/login",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       email,password
+    //     }),
+    //   }
+    // );
 
     try {
-      const {token} = await fetch(
-      "https://c4g-backend-2.onrender.com/api/admin/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,password
-        }),
-      }
-    );
+      const res = await axios.post(
+        "https://c4g-backend-2.onrender.com/api/admin/login",
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      if (token) {
+      if (res) {
         // redirect
-        localStorage.setItem("jwt", JSON.stringify(token));
+        localStorage.setItem("jwt", JSON.stringify(res));
         navigate("/management-home");
       }
     } catch (error) {
@@ -64,7 +72,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <h1>TEST 3</h1>
+        <h1>TEST 5</h1>
         <CssBaseline />
         <Box
           sx={{

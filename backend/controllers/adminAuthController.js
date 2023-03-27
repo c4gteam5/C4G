@@ -27,6 +27,7 @@ const createSendToken = (admin, statusCode, res) => {
   //remove password from output
   admin.password = undefined;
 
+  console.log("sending token")
   return res.status(statusCode).json({ token });
 };
 
@@ -60,6 +61,7 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res, next) => {
   console.log("called login endpoint")
   const { email, password } = req.body;
+  console.log(email)
 
   //1) check if email and password exist
   if (!email || !password) {
