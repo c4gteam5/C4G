@@ -70,7 +70,6 @@ export default function SignIn() {
 
       if (token) {
         // redirect
-
         localStorage.setItem("jwt", JSON.stringify(token));
         navigate("/management-home");
       }
