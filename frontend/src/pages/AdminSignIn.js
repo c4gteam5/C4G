@@ -49,7 +49,7 @@ export default function SignIn() {
     // );
 
     try {
-      const {token} = await axios.post(
+      const res = await axios.post(
         "https://c4g-backend-2.onrender.com/api/admin/login",
         { email, password },
         {
@@ -59,9 +59,9 @@ export default function SignIn() {
         }
       );
 
-      if (token) {
+      if (res) {
         // redirect
-        localStorage.setItem("jwt", JSON.stringify(token));
+        localStorage.setItem("jwt", JSON.stringify(res.data.token));
         navigate("/management-home");
       }
     } catch (error) {
@@ -72,7 +72,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <h1>TEST 6</h1>
+        <h1>TEST 10</h1>
         <CssBaseline />
         <Box
           sx={{
