@@ -10,6 +10,29 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 const ManagementHome = () => {
+
+
+
+    try {
+        const res = await axios.post(
+          "https://c4g-backend-2.onrender.com/api/admin/login",
+          { email, password },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+  
+        if (res) {
+          // redirect
+          localStorage.setItem("jwt", JSON.stringify(res.data.token));
+          navigate("/management-home");
+        }
+      } catch (error) {
+        alert(error);
+      }
+
     const theme = createTheme();
 
     return (

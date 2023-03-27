@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
+import { useLogin } from "../../hooks/useLogin";
+import { Toaster } from 'react-hot-toast';
 
 // ~~~ Pages ~~~ //
 import Footer from "../components/utils/Footer";
@@ -32,41 +34,10 @@ export default function SignIn() {
     formState: { errors },
   } = useForm();
 
-  const signInAdmin = async ({ email, password }, e) => {
-    e.preventDefault();
+  const {login, error, isLoading} = useLogin()
 
-    // const res = await fetch(
-    //   "https://c4g-backend-2.onrender.com/api/admin/login",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email,password
-    //     }),
-    //   }
-    // );
-
-    try {
-      const res = await axios.post(
-        "https://c4g-backend-2.onrender.com/api/admin/login",
-        { email, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (res) {
-        // redirect
-        localStorage.setItem("jwt", JSON.stringify(res.data.token));
-        navigate("/management-home");
-      }
-    } catch (error) {
-      alert(error);
-    }
+  const signInAdmin = async ({ email, password }) => {
+    await login(email, password)
   };
 
   return (
@@ -128,7 +99,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2 }} disabled={isLoading}
             >
               Admin Sign In
             </Button>
@@ -150,6 +121,7 @@ export default function SignIn() {
           title="Cyient Foundation - P5"
           description="Cyient (Estd: 1991, NSE: CYIENT) is a global digital engineering and technology company."
         />
+        <Toaster />
       </Container>
     </ThemeProvider>
   );

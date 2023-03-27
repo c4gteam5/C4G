@@ -17,6 +17,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.43.5",
+    "react-hot-toast": "^2.4.0",
     "react-markdown": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-scripts": "latest",
