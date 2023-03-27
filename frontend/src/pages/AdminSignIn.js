@@ -43,7 +43,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <h1>TEST 10</h1>
+        <Toaster />
         <CssBaseline />
         <Box
           sx={{
@@ -121,7 +121,7 @@ export default function SignIn() {
           title="Cyient Foundation - P5"
           description="Cyient (Estd: 1991, NSE: CYIENT) is a global digital engineering and technology company."
         />
-        <Toaster />
+        
       </Container>
     </ThemeProvider>
   );
