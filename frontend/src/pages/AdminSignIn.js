@@ -23,15 +23,6 @@ import { accordionActionsClasses } from "@mui/material";
 
 const theme = createTheme();
 
-const { token } = await axios.post(
-  "https://c4g-backend-2.onrender.com/api/admin/login",
-  document.querySelector("#my-form"),
-  {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }
-);
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -81,7 +72,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <h1>TEST 1</h1>
+        <h1>TEST 2</h1>
         <CssBaseline />
         <Box
           sx={{
