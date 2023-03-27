@@ -31,7 +31,10 @@ export default function SignIn() {
 
   const signInAdmin = async ({
     email, password
-  }) => {
+  }, e) => {
+
+    e.preventDefault()
+
     const res = await fetch(
       "https://c4g-backend-2.onrender.com/api/admin/login",
       {
@@ -47,11 +50,11 @@ export default function SignIn() {
     if (res.status === 200) {
       // redirect
       console.log(res.json())
-      localStorage.setItem('jwt', JSON.stringify(res.json()));
+      localStorage.setItem('jwt', JSON.stringify(res));
       navigate("/management-home");
     } else {
       // display an error
-      console.log(res)
+      console.log(res.json())
       alert(res.statusText);
     }
   };
@@ -59,7 +62,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <h1>TEST 29</h1>
+      <h1>TEST 1</h1>
         <CssBaseline />
         <Box
           sx={{
