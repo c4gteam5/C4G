@@ -15,11 +15,23 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
+import axios from "axios";
 
 // ~~~ Pages ~~~ //
 import Footer from "../components/utils/Footer";
+import { accordionActionsClasses } from "@mui/material";
 
 const theme = createTheme();
+
+const { token } = await axios.post(
+  "https://c4g-backend-2.onrender.com/api/admin/login",
+  document.querySelector("#my-form"),
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+);
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -29,40 +41,48 @@ export default function SignIn() {
     formState: { errors },
   } = useForm();
 
-  const signInAdmin = async ({
-    email, password
-  }, e) => {
+  const signInAdmin = async ({ email, password }, e) => {
+    e.preventDefault();
 
-    e.preventDefault()
+    // const res = await fetch(
+    //   "https://c4g-backend-2.onrender.com/api/admin/login",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       email,password
+    //     }),
+    //   }
+    // );
 
-    const res = await fetch(
-      "https://c4g-backend-2.onrender.com/api/admin/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,password
-        }),
+    try {
+      const { token } = await axios.post(
+        "https://c4g-backend-2.onrender.com/api/admin/login",
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (token) {
+        // redirect
+
+        localStorage.setItem("jwt", JSON.stringify(token));
+        navigate("/management-home");
       }
-    );
-    if (res.status === 200) {
-      // redirect
-      const token = res.json()
-      localStorage.setItem('jwt', JSON.stringify(token));
-      navigate("/management-home");
-    } else {
-      // display an error
-      console.log(res.json())
-      alert(res.statusText);
+    } catch (error) {
+      alert(error);
     }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <h1>TEST 4</h1>
+        <h1>TEST 1</h1>
         <CssBaseline />
         <Box
           sx={{
