@@ -17,6 +17,7 @@ import Archive from "./pages/Archive";
 import PostState from "./context/post/postState";
 import VolunteerManagement from "./pages/VolunteerManagement";
 import VolunteerState from "./context/volunteer/volunteerState";
+import { AuthContextProvider } from "./context/auth/AuthContext";
 
 // const baseURL = "http://localhost:8000/api/healthcheck";
 const baseURL = "https://c4g-backend-2.onrender.com/api/healthcheck";
@@ -33,6 +34,7 @@ function App() {
 
 	// ~~~ Handles the routes for page navigation ~~~ //
 	if (apiCall) return (
+		<AuthContextProvider>
 		<PostState>
 			<VolunteerState>
 			<BrowserRouter>
@@ -53,6 +55,7 @@ function App() {
 			</VolunteerState>
 			
 		</PostState>
+		</AuthContextProvider>
 	);
 }
 
