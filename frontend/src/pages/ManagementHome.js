@@ -8,14 +8,37 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import { useLogout } from "../hooks/useLogout";
 
 const ManagementHome = () => {
   const theme = createTheme();
+
+  const { logout } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
+        <Box
+          m={1}
+          //margin
+          display="flex"
+          justifyContent="flex-end"
+          alignItems="flex-end"
+        >
+          <Button
+            onClick={handleLogout}
+            variant="contained"
+            color="primary"
+            sx={{ height: 40 }}
+          >
+            Logout
+          </Button>
+        </Box>
         <Grid
           container
           justifyContent="center"

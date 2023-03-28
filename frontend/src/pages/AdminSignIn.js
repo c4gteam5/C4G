@@ -9,6 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import { Alert } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -17,33 +18,29 @@ import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { useLogin } from "../hooks/useLogin";
-import { Toaster } from 'react-hot-toast';
+
 
 // ~~~ Pages ~~~ //
 import Footer from "../components/utils/Footer";
-import { accordionActionsClasses } from "@mui/material";
 
 const theme = createTheme();
 
-
 export default function SignIn() {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const {login, error, isLoading} = useLogin()
+  const { login, error, isLoading } = useLogin();
 
   const signInAdmin = async ({ email, password }) => {
-    await login(email, password)
+    await login(email, password);
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        
         <CssBaseline />
         <Box
           sx={{
@@ -66,6 +63,7 @@ export default function SignIn() {
             sx={{ mt: 1 }}
           >
             <TextField
+              disabled={isLoading}
               margin="normal"
               required
               fullWidth
@@ -79,6 +77,7 @@ export default function SignIn() {
               {...register("email", { required: "Email is required" })}
             />
             <TextField
+              disabled={isLoading}
               margin="normal"
               required
               fullWidth
@@ -99,10 +98,14 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }} disabled={isLoading}
+              sx={{ mt: 3, mb: 2 }}
+              disabled={isLoading}
             >
               Admin Sign In
             </Button>
+            {error && (
+              <Alert severity="error">Invalid email and/or password</Alert>
+            )}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -121,7 +124,6 @@ export default function SignIn() {
           title="Cyient Foundation - P5"
           description="Cyient (Estd: 1991, NSE: CYIENT) is a global digital engineering and technology company."
         />
-        
       </Container>
     </ThemeProvider>
   );

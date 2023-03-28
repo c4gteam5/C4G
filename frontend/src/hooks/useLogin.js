@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
@@ -29,15 +30,16 @@ export const useLogin = () => {
       if (res) {
         // redirect
         
-        localStorage.setItem("jwt", JSON.stringify(res.data.token));
+        localStorage.setItem("jwt", JSON.stringify(res.data));
         dispatch({type: 'LOGIN'})
         setIsLoading(false);
         navigate("/management-home");
       }
     } catch (error) {
       setIsLoading(false);
-      setError(error);
-      toast(error)
+      setError(JSON.stringify(error));
+      //toast.error("invalid email and/or password")
+     // alert("Invalid email and/or password")
     }
   };
 
