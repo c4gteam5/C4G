@@ -120,12 +120,14 @@ exports.protect = async (req, res, next) => {
   //3) if verification is successful, check if user still exists
   const freshUser = await Admin.findById(decoded.id);
   if (!freshUser) {
+    console.log("not a fresh user")
     return res.status(403).json({
       message: 'Admin no longer exists'
   })  }
 
   //4) Check if user changed password after token was issued
   if (freshUser.changedPasswordAfter(decoded.iat)) {
+    console.log("PW changed")
     return res.status(403).json({
       message: 'Admin changed password. Must login again'
   })  }
