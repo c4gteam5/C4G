@@ -44,13 +44,13 @@ function App() {
 				<Routes>
 					<Route path="/">
 						<Route index element={<Site />} />
-						<Route path="admin-sign-in" element={!user ? <AdminSignIn /> : <Navigate to='management-home'/>} />
+						<Route path="admin-sign-in" element={!user ? <AdminSignIn /> : <Navigate to='/management-home'/>} />
 						<Route path="volunteer-sign-up" element={<VolunteerSignUp />} />
-						<Route path="management-home" element={user ? <ManagementHome /> : <Navigate to='admin-sign-in'/>} />
+						<Route path="management-home" element={user ? <ManagementHome /> : <Navigate to='/admin-sign-in'/>} />
 						<Route path="read-blog-post" element={<ReadBlog />} />
 						<Route path="archive" element={<Archive />} />
-						<Route path="post-management" element={user ? <PostManagement /> : <Navigate to='admin-sign-in'/>} />
-						<Route path="volunteer-management" element={user ? <VolunteerManagement />  : <Navigate to='admin-sign-in'/>} />
+						<Route path="post-management" element={user ? <PostManagement /> : <Navigate to='/admin-sign-in'/>} />
+						<Route path="volunteer-management" element={user ? <VolunteerManagement />  : <Navigate to='/admin-sign-in'/>} />
 					</Route>
 				</Routes>
 				
