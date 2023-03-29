@@ -29,10 +29,10 @@ export const useLogin = () => {
 
       if (res) {
         // redirect
-        
-        localStorage.setItem("jwt", JSON.stringify(res.data));
         dispatch({type: 'LOGIN'})
+        localStorage.setItem("jwt", JSON.stringify(res.data));
         setIsLoading(false);
+        window.location.reload(false);
         navigate("/management-home");
       }
     } catch (error) {
