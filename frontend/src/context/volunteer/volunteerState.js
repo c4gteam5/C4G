@@ -11,9 +11,14 @@ export const useVolunteers = () => {
     const { state, dispatch } = useContext(VolunteerContext);
     return [state, dispatch];
 };
-export const getVolunteers = async (dispatch) => {
+export const getVolunteers = async (dispatch, token) => {
     try {
-        const res = await axios.get(getBaseURL + "api/volunteers/getall");
+        const res = await axios.get(getBaseURL + "api/volunteers/getall",{
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` 
+            }
+        });
         dispatch({
             type: GET_VOLUNTEERS,
             payload: res.data.volunteers

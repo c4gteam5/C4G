@@ -1,13 +1,15 @@
 import React, { useEffect, Fragment } from 'react';
 import {getVolunteers, useVolunteers} from "../../context/volunteer/volunteerState";
+import { useAuthContext } from '../../hooks/useAuthContext';
 import VolunteerItem from "./VolunteerItem";
 
 const Volunteers = () => {
     const [volunteerState, volunteerDispatch] = useVolunteers();
     const { volunteers, filtered} = volunteerState;
+    const {user} = useAuthContext()
     useEffect(() => {
-        getVolunteers(volunteerDispatch);
-    }, [volunteerDispatch]);
+        getVolunteers(volunteerDispatch, user.token);
+    }, [volunteerDispatch, user]);
 
     if (volunteers !== null && volunteers.length === 0) {
         return <h4>No volunteers yet</h4>;

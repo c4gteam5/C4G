@@ -6,14 +6,16 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const PostItem = ({ post }) => {
     const postDispatch = usePosts()[1];
 
     const { _id, title, content } = post;
+    const {user} = useAuthContext()
 
     const onDelete = () => {
-        deletePost(postDispatch, _id);
+        deletePost(postDispatch, _id, user.token);
         clearCurrentPost(postDispatch);
     };
 

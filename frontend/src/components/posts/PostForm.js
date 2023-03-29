@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const initialPost = {
     title: '',
@@ -22,6 +23,7 @@ const PostForm = () => {
 
     const { current } = postState;
     const [post, setPost] = useState(initialPost);
+    const {user} = useAuthContext()
 
     useEffect(() => {
         if (current !== null) {
@@ -38,9 +40,9 @@ const PostForm = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         if (current === null) {
-            addPost(post, postDispatch).then(() => setPost(initialPost));
+            addPost(post, postDispatch, user.token).then(() => setPost(initialPost));
         } else {
-            updatePost(postDispatch, post);
+            updatePost(postDispatch, post, user.token);
         }
         clearCurrentPost(postDispatch);
     };

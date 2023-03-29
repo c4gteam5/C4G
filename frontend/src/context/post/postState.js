@@ -12,6 +12,10 @@ import {
     UPDATE_POST
 } from "../types";
 import getBaseURL from "../../components/utils/GetServerUrl";
+import { useAuthContext } from '../../hooks/useAuthContext';
+
+
+
 
 export const usePosts = () => {
     const { state, dispatch } = useContext(PostContext);
@@ -33,9 +37,17 @@ export const getPosts = async (dispatch) => {
     }
 };
 
-export const addPost = async (post, dispatch) => {
+export const addPost = async (post, dispatch, token) => {
+
+    
+    
     try {
-        const res = await axios.post(getBaseURL + "api/blog/create", post);
+        const res = await axios.post(getBaseURL + "api/blog/create", post, {
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` 
+            }
+        });
         dispatch({
             type: ADD_POST,
             payload: res.data
@@ -49,9 +61,14 @@ export const addPost = async (post, dispatch) => {
 };
 
 // Delete Post
-export const deletePost = async (dispatch, id) => {
+export const deletePost = async (dispatch, id, token) => {
     try {
-        await axios.delete(getBaseURL + `api/blog/${id}`);
+        await axios.delete(getBaseURL + `api/blog/${id}`,{
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` 
+            }
+        });
 
         dispatch({
             type: DELETE_POST,
@@ -65,9 +82,14 @@ export const deletePost = async (dispatch, id) => {
     }
 };
 
-export const updatePost = async (dispatch, post) => {
+export const updatePost = async (dispatch, post, token) => {
     try {
-        const res = await axios.patch(getBaseURL + `api/blog/${post._id}`, post);
+        const res = await axios.patch(getBaseURL + `api/blog/${post._id}`, post,{
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` 
+            }
+        });
         dispatch({
             type: UPDATE_POST,
             payload: res.data
