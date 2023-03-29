@@ -64,8 +64,7 @@ export const addPost = async (post, dispatch, token) => {
 // Delete Post
 export const deletePost = async (dispatch, id, token) => {
     try {
-        console.log("token")
-        console.log(token)
+        
         await axios.delete(getBaseURL + `api/blog/${id}`,{
             headers:{
                 "Content-Type": "application/json",
