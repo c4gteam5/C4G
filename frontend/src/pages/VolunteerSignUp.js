@@ -63,7 +63,7 @@ export default function SignUp() {
 
     }catch(err){
       setIsLoading(false);
-      setError(JSON.stringify(err));
+      setError(JSON.stringify(err.response.data));
     }
   };
 
