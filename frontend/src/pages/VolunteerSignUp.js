@@ -65,32 +65,36 @@ export default function SignUp() {
       setIsLoading(false);
       if(err.response.data.message.errors.firstName){
         setError("invalid first name");
+        return
       }
 
       if(err.response.data.message.errors.lastName){
         setError("invalid last name");
+        return
       }
       
       if(err.response.data.message.errors.email){
         setError("invalid email");
+        return
       }
 
       if(err.response.data.message.errors.phoneNumber){
         setError("invalid phone number");
+        return
       }
 
       if(err.response.data.message.errors.profession){
         setError("invalid profession");
+        return
       }
 
       if(err.response.data.message.errors.interest){
         setError("invalid interests");
+        return
       }
       
-      else{
         setError(JSON.stringify(err.response.data));
 
-      }
     }
   };
 
