@@ -27,7 +27,7 @@ const createSendToken = (admin, statusCode, res) => {
   //remove password from output
   admin.password = undefined;
 
-  console.log("sending token")
+ 
   return res.status(statusCode).json({ token });
 };
 
@@ -59,9 +59,9 @@ exports.signup = async (req, res) => {
 };
 
 exports.login = async (req, res, next) => {
-  console.log("called login endpoint")
+  
   const { email, password } = req.body;
-  console.log(email)
+  
 
   //1) check if email and password exist
   if (!email || !password) {
@@ -111,8 +111,7 @@ exports.protect = async (req, res, next) => {
   })
   }
 
-  console.log("token")
-  console.log(token)
+  
 
   //2) verify the token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
@@ -120,14 +119,14 @@ exports.protect = async (req, res, next) => {
   //3) if verification is successful, check if user still exists
   const freshUser = await Admin.findById(decoded.id);
   if (!freshUser) {
-    console.log("not a fresh user")
+    
     return res.status(403).json({
       message: 'Admin no longer exists'
   })  }
 
   //4) Check if user changed password after token was issued
   if (freshUser.changedPasswordAfter(decoded.iat)) {
-    console.log("PW changed")
+    
     return res.status(403).json({
       message: 'Admin changed password. Must login again'
   })  }

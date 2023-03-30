@@ -29,7 +29,7 @@ export default function App() {
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
-      console.log(response.data)
+      
       setApiCall(response.data);
     });
   }, []);
