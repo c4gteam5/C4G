@@ -63,10 +63,12 @@ export default function SignUp() {
 
     }catch(err){
       setIsLoading(false);
-      if(typeof err.response.data.message.errors){
+      if(err.response.data.message.errors.phoneNumber){
         setError(JSON.stringify("invalid phone number"));
+      }else{
+        setError(JSON.stringify(err.response.data.message));
+
       }
-      setError(JSON.stringify(err.response.data.message));
     }
   };
 
