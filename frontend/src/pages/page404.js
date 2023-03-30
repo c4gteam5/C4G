@@ -23,7 +23,7 @@ export default function page404() {
         <br />
         <center>
           <h1>Page Not Found</h1>
-          <h3>Hmmm.. Looks like you're lost.</h3>
+          <h3>Hmmm... Looks like you're lost.</h3>
           <Button variant="contained" component={Link} to={"/"}>
             Let's go back home
           </Button>
