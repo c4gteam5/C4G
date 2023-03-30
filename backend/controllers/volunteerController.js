@@ -2,7 +2,9 @@ const Volunteer = require("../dataModels/volunteerModel");
 
 //sign up method... you gotta specifically state what to save in the new user
 exports.signup = async (req, res) => {
+  console.log("hit endpoint colunteer create")
   if (!req.body) {
+    console.log("invalid body")
     return res.status(400).json({
       message: "invalid body",
     });
@@ -18,6 +20,7 @@ exports.signup = async (req, res) => {
       interest: req.body.interest,
     });
   } catch (err) {
+    console.log("seomthing went wrong")
     return res.status(400).json({
       message: err.message,
     });

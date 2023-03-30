@@ -14,6 +14,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm, Controller } from "react-hook-form";
+import { Alert } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 // ~~~ Pages ~~~ //
 import Footer from '../components/utils/Footer';
@@ -25,6 +29,10 @@ const theme = createTheme();
 
 export default function SignUp() {
 
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -32,19 +40,30 @@ export default function SignUp() {
   } = useForm();
 
   const postVolunteer = async ({ firstName, lastName,email,phoneNumber,profession,interest}) => {
-    const res = await fetch("https://c4g-backend-2.onrender.com/api/volunteers/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ firstName, lastName,email,phoneNumber,profession,interest }),
-    });
-    if (res.status === 201) {
-      // redirect
-      alert("form submitted successfully")
-    } else {
-      // display an error
-      alert("something went wrong")
+    try{
+      setIsLoading(true);
+      setError(null);
+
+      const res = await axios.post(
+        "https://c4g-backend-2.onrender.com/api/volunteers/signup",
+        { firstName, lastName,email,phoneNumber,profession,interest },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if(res){
+        alert("form submitted successfully")
+        setIsLoading(false);
+        navigate("/")
+
+      }
+
+    }catch(err){
+      setIsLoading(false);
+      setError(JSON.stringify(err));
     }
   };
 
@@ -77,6 +96,7 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  disabled={isLoading}
                   error={!!errors?.firstName}
                   helperText={errors?.firstName ? errors.firstName.message : null}
                   {...register('firstName', { required: "First name is required" })}
@@ -94,6 +114,7 @@ export default function SignUp() {
                   name="lastName"
                   autoComplete="family-name"
                   error={!!errors?.lastName}
+                  disabled={isLoading}
                   helperText={errors?.lastName ? errors.lastName.message : null}
                   {...register('lastName', { required: "Last name is required" })}
                 />
@@ -105,6 +126,7 @@ export default function SignUp() {
                   id="email"
                   label="Email Address"
                   name="email"
+                  disabled={isLoading}
                   autoComplete="email"
                   {...register("email", {
                     required: "Required field",
@@ -126,6 +148,7 @@ export default function SignUp() {
                   type="tel"
                   id="phoneNumber"
                   autoComplete="phoneNumber"
+                  disabled={isLoading}
                   helperText={errors?.phoneNumber ? errors.phoneNumber.message : null}
                   {...register('phoneNumber', { required: "Phone Number is required" })}
                   error={!!errors?.phoneNumber}
@@ -139,6 +162,7 @@ export default function SignUp() {
                   label="Profession"
                   type="text"
                   id="profession"
+                  disabled={isLoading}
                   autoComplete="profession"
                   helperText={errors?.profession ? errors.profession.message : null}
                   {...register('profession', { required: "Profession is required" })}
@@ -155,6 +179,7 @@ export default function SignUp() {
                   type="text"
                   id="interest"
                   autoComplete="interest"
+                  disabled={isLoading}
                   helperText={errors?.interest ? errors.interest.message : null}
                   {...register('interest', { required: "Interest is required" })}
                   error={!!errors?.interest}
@@ -165,10 +190,14 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
+              disabled={isLoading}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
             </Button>
+            {error && (
+              <Alert severity="error">{`Error: ${error}`}</Alert>
+            )}
             <Grid container justifyContent="flex-end">
               
             </Grid>
