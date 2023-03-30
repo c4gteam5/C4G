@@ -20,8 +20,6 @@ exports.signup = async (req, res) => {
       interest: req.body.interest,
     });
   } catch (err) {
-    console.log("seomthing went wrong")
-    console.log(err)
     return res.status(400).json({
       message: err,
     });
