@@ -12,6 +12,7 @@ import AdminSignIn from "./pages/AdminSignIn";
 import VolunteerSignUp from "./pages/VolunteerSignUp";
 import ManagementHome from "./pages/ManagementHome";
 import PostManagement from "./pages/PostManagement";
+import Page404 from "./pages/page404";
 import ReadBlog from "./pages/ReadBlog";
 import Archive from "./pages/Archive";
 import PostState from "./context/post/postState";
@@ -53,6 +54,7 @@ function App() {
 						<Route path="archive" element={<Archive />} />
 						<Route path="post-management" element={user ? <PostManagement /> : <Navigate to='/admin-sign-in'/>} />
 						<Route path="volunteer-management" element={user ? <VolunteerManagement />  : <Navigate to='/admin-sign-in'/>} />
+						<Route path="/*" element={<Page404/>}/>
 					</Route>
 				</Routes>
 				
