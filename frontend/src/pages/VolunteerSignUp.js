@@ -176,11 +176,12 @@ export default function SignUp() {
                   fullWidth
                   name="phoneNumber"
                   label="Phone Number"
+                  
                   type="tel"
                   id="phoneNumber"
                   autoComplete="phoneNumber"
                   disabled={isLoading}
-                  helperText={errors?.phoneNumber ? errors.phoneNumber.message : null}
+                  helperText={errors?.phoneNumber ? errors.phoneNumber.message : "Numbers only. No special characters. "}
                   {...register('phoneNumber', { required: "Phone Number is required" })}
                   error={!!errors?.phoneNumber}
                 />
