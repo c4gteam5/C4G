@@ -50,8 +50,8 @@ const adminSchema = new mongoose.Schema({
 adminSchema.pre('save', async function(next) {
   //only run this function if password was modified
   if (!this.isModified('password')) return next();
-  //has the password with cost of 12
-  this.password = await bcrypt.hash(this.password, 13);
+  //has the password with cost of 8
+  this.password = await bcrypt.hash(this.password, 8);
   //delete the password confirm field
   this.passwordConfirm = undefined;
   next();
